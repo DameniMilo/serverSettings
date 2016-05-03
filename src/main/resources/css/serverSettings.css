@@ -1,0 +1,19 @@
+/*body {*/
+    /*background-color: aliceblue;*/
+/*}*/
+
+#serverSettings .page-header {
+    background: #535E71;
+    color: #fff;
+    height: 64px;
+    line-height: 64px;
+    margin: 0 -15px;
+    margin-bottom: 30px;
+}
+
+#serverSettings .page-header h2 {
+    line-height: 60px;
+    margin: 0;
+    padding: 0;
+    margin-left: 25px;
+}
