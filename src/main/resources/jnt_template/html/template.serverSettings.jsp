@@ -24,22 +24,36 @@
     <c:if test="${!empty author}"><meta name="author" content="${author.string}" /></c:if>
     <c:if test="${!empty keywords}"><meta name="keywords" content="${keywords}" /></c:if>
     <title>${fn:escapeXml(renderContext.mainResource.node.displayableName)}</title>
+    <template:addResources type="css" resources="bootstrap3.serverSettings.min.css"/>
+    <template:addResources type="css" resources="bootstrap-material-design.css"/>
+    <template:addResources type="css" resources="ripples.css"/>
+    <template:addResources type="css" resources="roboto-fonts.css"/>
+    <template:addResources type="css" resources="material-icons.css"/>
+    <template:addResources type="css" resources="serverSettings.css"/>
 </head>
 
 <body>
 
-<div class="well clearfix">
-    <template:area path="pagecontent"/>
+<body id="serverSettings">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <template:area path="pagecontent"/>
+        </div>
+    </div>
 </div>
 <div class="clearfix">
     <p class="text-center jahia-admin-copyright"><fmt:message key="jahia.copyright" />&nbsp;<fmt:message
             key="jahia.company" /></p>
 </div>
-<c:if test="${renderContext.editMode}">
-    <template:addResources type="css" resources="edit.css" />
-</c:if>
-<template:addResources type="javascript" resources="jquery.min.js,admin-bootstrap.js"/>
-<template:addResources type="css" resources="admin-bootstrap.css,admin-server-settings.css"/>
+<%--<c:if test="${renderContext.editMode}">--%>
+    <%--<template:addResources type="css" resources="edit.css" />--%>
+<%--</c:if>--%>
+<template:addResources type="javascript" resources="jquery.min.js"/>
+<template:addResources type="javascript" resources="bootstrap3.serverSettings.min.js"/>
+<template:addResources type="javascript" resources="material.js"/>
+<template:addResources type="javascript" resources="ripples.js"/>
+<%--<template:addResources type="css" resources="admin-bootstrap.css,admin-server-settings.css"/>--%>
 <template:theme/>
 
 </body>
