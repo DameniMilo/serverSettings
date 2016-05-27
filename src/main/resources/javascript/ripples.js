@@ -97,12 +97,12 @@
       var $ripple = $("<div></div>");
 
       $ripple
-      .addClass("ripple")
-      .css({
-        "left": relX,
-        "top": relY,
-        "background-color": rippleColor
-      });
+          .addClass("ripple")
+          .css({
+            "left": relX,
+            "top": relY,
+            "background-color": rippleColor
+          });
 
 
       /**
@@ -228,11 +228,11 @@
     var thisStyle = thisBody.style;
 
     var support = (
-      thisStyle.transition !== undefined ||
-      thisStyle.WebkitTransition !== undefined ||
-      thisStyle.MozTransition !== undefined ||
-      thisStyle.MsTransition !== undefined ||
-      thisStyle.OTransition !== undefined
+        thisStyle.transition !== undefined ||
+        thisStyle.WebkitTransition !== undefined ||
+        thisStyle.MozTransition !== undefined ||
+        thisStyle.MsTransition !== undefined ||
+        thisStyle.OTransition !== undefined
     );
 
     return support;
@@ -287,15 +287,15 @@
 
     if(self.hasTransitionSupport()) {
       $ripple
-      .css({
-        "-ms-transform": "scale(" + size + ")",
-        "-moz-transform": "scale(" + size + ")",
-        "-webkit-transform": "scale(" + size + ")",
-        "transform": "scale(" + size + ")"
-      })
-      .addClass("ripple-on")
-      .data("animating", "on")
-      .data("mousedown", "on");
+          .css({
+            "-ms-transform": "scale(" + size + ")",
+            "-moz-transform": "scale(" + size + ")",
+            "-webkit-transform": "scale(" + size + ")",
+            "transform": "scale(" + size + ")"
+          })
+          .addClass("ripple-on")
+          .data("animating", "on")
+          .data("mousedown", "on");
     } else {
       $ripple.animate({
         "width": Math.max($element.outerWidth(), $element.outerHeight()) * 2,
