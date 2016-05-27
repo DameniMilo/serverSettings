@@ -17,3 +17,11 @@
     padding: 0;
     margin-left: 25px;
 }
+
+.dataTables-pagination {
+    margin: 0;
+}
+
+td .form-group {
+    margin-top: 0;
+}
