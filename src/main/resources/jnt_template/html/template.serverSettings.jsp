@@ -30,9 +30,15 @@
     <template:addResources type="css" resources="roboto-fonts.css"/>
     <template:addResources type="css" resources="material-icons.css"/>
     <template:addResources type="css" resources="serverSettings.css"/>
+    <template:addResources>
+        <script>
+            $.material.init();
+            $(document).ready(function() {
+                $.material.init();
+            });
+        </script>
+    </template:addResources>
 </head>
-
-<body>
 
 <body id="serverSettings">
 <div class="container-fluid">
@@ -43,17 +49,12 @@
     </div>
 </div>
 <div class="clearfix">
-    <p class="text-center jahia-admin-copyright"><fmt:message key="jahia.copyright" />&nbsp;<fmt:message
-            key="jahia.company" /></p>
+    <p class="text-center text-muted"><fmt:message key="jahia.copyright" />&nbsp;-&nbsp;<fmt:message key="jahia.company" /></p>
 </div>
-<%--<c:if test="${renderContext.editMode}">--%>
-    <%--<template:addResources type="css" resources="edit.css" />--%>
-<%--</c:if>--%>
 <template:addResources type="javascript" resources="jquery.min.js"/>
 <template:addResources type="javascript" resources="bootstrap3.serverSettings.min.js"/>
 <template:addResources type="javascript" resources="material.js"/>
 <template:addResources type="javascript" resources="ripples.js"/>
-<%--<template:addResources type="css" resources="admin-bootstrap.css,admin-server-settings.css"/>--%>
 <template:theme/>
 
 </body>
