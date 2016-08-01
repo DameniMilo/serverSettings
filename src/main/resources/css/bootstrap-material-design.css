@@ -68,7 +68,7 @@ h6,
 .h2,
 .h3,
 .h4 {
-  font-family: Roboto, 'Helvetica', 'Arial', sans-serif;
+  font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
   font-weight: 300;
 }
 h5,
@@ -859,6 +859,7 @@ label.checkbox-inline .checkbox-material {
 label.checkbox-inline .checkbox-material:before {
   display: block;
   position: absolute;
+  top: -5px;
   left: 0;
   content: "";
   background-color: rgba(0, 0, 0, 0.84);
@@ -909,13 +910,46 @@ label.checkbox-inline .checkbox-material .check:before {
   0 0 0 0,
   0 0 0 0,
   0 0 0 0 inset;
-  -webkit-animation: checkbox-off;
-  -o-animation: checkbox-off;
-  animation: checkbox-off;
 }
 .checkbox input[type=checkbox]:focus + .checkbox-material .check:after,
 label.checkbox-inline input[type=checkbox]:focus + .checkbox-material .check:after {
   opacity: 0.2;
+}
+.checkbox input[type=checkbox]:focus:checked + .checkbox-material:before,
+label.checkbox-inline input[type=checkbox]:focus:checked + .checkbox-material:before {
+  -webkit-animation: rippleOn 500ms;
+  -o-animation: rippleOn 500ms;
+  animation: rippleOn 500ms;
+}
+.checkbox input[type=checkbox]:focus:checked + .checkbox-material .check:before,
+label.checkbox-inline input[type=checkbox]:focus:checked + .checkbox-material .check:before {
+  -webkit-animation: checkbox-on 0.3s forwards;
+  -o-animation: checkbox-on 0.3s forwards;
+  animation: checkbox-on 0.3s forwards;
+}
+.checkbox input[type=checkbox]:focus:checked + .checkbox-material .check:after,
+label.checkbox-inline input[type=checkbox]:focus:checked + .checkbox-material .check:after {
+  -webkit-animation: rippleOn 500ms forwards;
+  -o-animation: rippleOn 500ms forwards;
+  animation: rippleOn 500ms forwards;
+}
+.checkbox input[type=checkbox]:focus:not(:checked) + .checkbox-material:before,
+label.checkbox-inline input[type=checkbox]:focus:not(:checked) + .checkbox-material:before {
+  -webkit-animation: rippleOff 500ms;
+  -o-animation: rippleOff 500ms;
+  animation: rippleOff 500ms;
+}
+.checkbox input[type=checkbox]:focus:not(:checked) + .checkbox-material .check:before,
+label.checkbox-inline input[type=checkbox]:focus:not(:checked) + .checkbox-material .check:before {
+  -webkit-animation: checkbox-off 0.3s forwards;
+  -o-animation: checkbox-off 0.3s forwards;
+  animation: checkbox-off 0.3s forwards;
+}
+.checkbox input[type=checkbox]:focus:not(:checked) + .checkbox-material .check:after,
+label.checkbox-inline input[type=checkbox]:focus:not(:checked) + .checkbox-material .check:after {
+  -webkit-animation: rippleOff 500ms forwards;
+  -o-animation: rippleOff 500ms forwards;
+  animation: rippleOff 500ms forwards;
 }
 .checkbox input[type=checkbox]:checked + .checkbox-material .check,
 label.checkbox-inline input[type=checkbox]:checked + .checkbox-material .check {
@@ -927,33 +961,6 @@ label.checkbox-inline input[type=checkbox]:checked + .checkbox-material .check:b
   color: #00A0E3;
   -webkit-box-shadow: 0 0 0 10px, 10px -10px 0 10px, 32px 0 0 20px, 0px 32px 0 20px, -5px 5px 0 10px, 20px -12px 0 11px;
   box-shadow: 0 0 0 10px, 10px -10px 0 10px, 32px 0 0 20px, 0px 32px 0 20px, -5px 5px 0 10px, 20px -12px 0 11px;
-  -webkit-animation: checkbox-on 0.3s forwards;
-  -o-animation: checkbox-on 0.3s forwards;
-  animation: checkbox-on 0.3s forwards;
-}
-.checkbox input[type=checkbox]:checked + .checkbox-material:before,
-label.checkbox-inline input[type=checkbox]:checked + .checkbox-material:before {
-  -webkit-animation: rippleOn;
-  -o-animation: rippleOn;
-  animation: rippleOn;
-}
-.checkbox input[type=checkbox]:checked + .checkbox-material .check:after,
-label.checkbox-inline input[type=checkbox]:checked + .checkbox-material .check:after {
-  -webkit-animation: rippleOn 500ms forwards;
-  -o-animation: rippleOn 500ms forwards;
-  animation: rippleOn 500ms forwards;
-}
-.checkbox input[type=checkbox]:not(:checked) + .checkbox-material:before,
-label.checkbox-inline input[type=checkbox]:not(:checked) + .checkbox-material:before {
-  -webkit-animation: rippleOff;
-  -o-animation: rippleOff;
-  animation: rippleOff;
-}
-.checkbox input[type=checkbox]:not(:checked) + .checkbox-material .check:after,
-label.checkbox-inline input[type=checkbox]:not(:checked) + .checkbox-material .check:after {
-  -webkit-animation: rippleOff 500ms forwards;
-  -o-animation: rippleOff 500ms forwards;
-  animation: rippleOff 500ms forwards;
 }
 fieldset[disabled] .checkbox,
 fieldset[disabled] label.checkbox-inline,
@@ -974,24 +981,6 @@ label.checkbox-inline input[type=checkbox][disabled] + .checkbox-material .check
   -ms-transform: rotate(-45deg);
   -o-transform: rotate(-45deg);
   transform: rotate(-45deg);
-}
-.is-focused .checkbox .checkbox-material .check:before,
-.is-focused label.checkbox-inline .checkbox-material .check:before {
-  -webkit-animation: checkbox-off 0.3s forwards;
-  -o-animation: checkbox-off 0.3s forwards;
-  animation: checkbox-off 0.3s forwards;
-}
-.is-focused .checkbox input[type=checkbox]:checked + .checkbox-material:before,
-.is-focused label.checkbox-inline input[type=checkbox]:checked + .checkbox-material:before {
-  -webkit-animation: rippleOn 500ms;
-  -o-animation: rippleOn 500ms;
-  animation: rippleOn 500ms;
-}
-.is-focused .checkbox input[type=checkbox]:not(:checked) + .checkbox-material:before,
-.is-focused label.checkbox-inline input[type=checkbox]:not(:checked) + .checkbox-material:before {
-  -webkit-animation: rippleOff 500ms;
-  -o-animation: rippleOff 500ms;
-  animation: rippleOff 500ms;
 }
 @-webkit-keyframes checkbox-on {
   0% {
@@ -1426,17 +1415,17 @@ label.radio-inline .check:after {
   -webkit-transform: scale3d(1.5, 1.5, 1);
   transform: scale3d(1.5, 1.5, 1);
 }
-.radio input[type=radio]:not(:checked) ~ .check:after,
-label.radio-inline input[type=radio]:not(:checked) ~ .check:after {
+.radio input[type=radio]:focus:not(:checked) ~ .check:after,
+label.radio-inline input[type=radio]:focus:not(:checked) ~ .check:after {
   -webkit-animation: rippleOff 500ms;
   -o-animation: rippleOff 500ms;
   animation: rippleOff 500ms;
 }
-.radio input[type=radio]:checked ~ .check:after,
-label.radio-inline input[type=radio]:checked ~ .check:after {
-  -webkit-animation: rippleOn;
-  -o-animation: rippleOn;
-  animation: rippleOn;
+.radio input[type=radio]:focus:checked ~ .check:after,
+label.radio-inline input[type=radio]:focus:checked ~ .check:after {
+  -webkit-animation: rippleOn 500ms;
+  -o-animation: rippleOn 500ms;
+  animation: rippleOn 500ms;
 }
 .radio input[type=radio],
 label.radio-inline input[type=radio] {
@@ -1491,12 +1480,6 @@ label.radio-inline input[type=radio][disabled] ~ .circle {
 .theme-dark .radio input[type=radio][disabled] ~ .circle,
 .theme-dark label.radio-inline input[type=radio][disabled] ~ .circle {
   border-color: #ffffff;
-}
-.is-focused .radio input[type=radio]:checked ~ .check:after,
-.is-focused label.radio-inline input[type=radio]:checked ~ .check:after {
-  -webkit-animation: rippleOn 500ms;
-  -o-animation: rippleOn 500ms;
-  animation: rippleOn 500ms;
 }
 @keyframes rippleOn {
   0% {
@@ -2330,31 +2313,51 @@ legend {
     margin-top: 15px;
     margin-bottom: 15px;
   }
-  .navbar .navbar-nav .open .dropdown-menu > .dropdown-header {
+  .navbar .navbar-nav .dropdown .dropdown-toggle .caret {
+    display: none;
+  }
+  .navbar .navbar-nav .dropdown .dropdown-toggle:after {
+    content: 'keyboard_arrow_right';
+    font-family: 'Material Icons';
+    font-size: 1.5em;
+    float: right;
+    -webkit-font-feature-settings: 'liga';
+    -moz-font-feature-settings: 'liga';
+    font-feature-settings: 'liga';
+    /* Support for IE. */
+  }
+  .navbar .navbar-nav .dropdown .dropdown-menu {
+    margin-left: 20px;
+  }
+  .navbar .navbar-nav .dropdown.open .dropdown-toggle:after {
+    content: 'keyboard_arrow_down';
+  }
+  .navbar .navbar-nav .dropdown.open .dropdown-menu > .dropdown-header {
     border: 0;
     color: inherit;
   }
-  .navbar .navbar-nav .open .dropdown-menu .divider {
+  .navbar .navbar-nav .dropdown.open .dropdown-menu .divider {
     border-bottom: 1px solid;
     opacity: 0.08;
   }
-  .navbar .navbar-nav .open .dropdown-menu > li > a {
+  .navbar .navbar-nav .dropdown.open .dropdown-menu > li > a {
     color: inherit;
+    font-size: inherit;
   }
-  .navbar .navbar-nav .open .dropdown-menu > li > a:hover,
-  .navbar .navbar-nav .open .dropdown-menu > li > a:focus {
-    color: inherit;
-    background-color: transparent;
-  }
-  .navbar .navbar-nav .open .dropdown-menu > .active > a,
-  .navbar .navbar-nav .open .dropdown-menu > .active > a:hover,
-  .navbar .navbar-nav .open .dropdown-menu > .active > a:focus {
+  .navbar .navbar-nav .dropdown.open .dropdown-menu > li > a:hover,
+  .navbar .navbar-nav .dropdown.open .dropdown-menu > li > a:focus {
     color: inherit;
     background-color: transparent;
   }
-  .navbar .navbar-nav .open .dropdown-menu > .disabled > a,
-  .navbar .navbar-nav .open .dropdown-menu > .disabled > a:hover,
-  .navbar .navbar-nav .open .dropdown-menu > .disabled > a:focus {
+  .navbar .navbar-nav .dropdown.open .dropdown-menu > .active > a,
+  .navbar .navbar-nav .dropdown.open .dropdown-menu > .active > a:hover,
+  .navbar .navbar-nav .dropdown.open .dropdown-menu > .active > a:focus {
+    color: inherit;
+    background-color: transparent;
+  }
+  .navbar .navbar-nav .dropdown.open .dropdown-menu > .disabled > a,
+  .navbar .navbar-nav .dropdown.open .dropdown-menu > .disabled > a:hover,
+  .navbar .navbar-nav .dropdown.open .dropdown-menu > .disabled > a:focus {
     color: inherit;
     background-color: transparent;
   }
@@ -2426,6 +2429,12 @@ fieldset[disabled] .navbar .btn-link:focus {
 .navbar.navbar-default .dropdown-menu {
   border-radius: 2px;
 }
+@media (max-width: 767px) {
+  .navbar .dropdown-menu .dropdown-header,
+  .navbar.navbar-default .dropdown-menu .dropdown-header {
+    background-color: #00b2fc;
+  }
+}
 .navbar .dropdown-menu li > a,
 .navbar.navbar-default .dropdown-menu li > a {
   font-size: 16px;
@@ -2468,6 +2477,11 @@ fieldset[disabled] .navbar .btn-link:focus {
 .navbar.navbar-inverse .dropdown-menu {
   border-radius: 2px;
 }
+@media (max-width: 767px) {
+  .navbar.navbar-inverse .dropdown-menu .dropdown-header {
+    background-color: #4d5ec1;
+  }
+}
 .navbar.navbar-inverse .dropdown-menu li > a {
   font-size: 16px;
   padding: 13px 16px;
@@ -2503,6 +2517,11 @@ fieldset[disabled] .navbar .btn-link:focus {
 }
 .navbar.navbar-primary .dropdown-menu {
   border-radius: 2px;
+}
+@media (max-width: 767px) {
+  .navbar.navbar-primary .dropdown-menu .dropdown-header {
+    background-color: #00b2fc;
+  }
 }
 .navbar.navbar-primary .dropdown-menu li > a {
   font-size: 16px;
@@ -2540,6 +2559,11 @@ fieldset[disabled] .navbar .btn-link:focus {
 .navbar.navbar-success .dropdown-menu {
   border-radius: 2px;
 }
+@media (max-width: 767px) {
+  .navbar.navbar-success .dropdown-menu .dropdown-header {
+    background-color: #5abf7b;
+  }
+}
 .navbar.navbar-success .dropdown-menu li > a {
   font-size: 16px;
   padding: 13px 16px;
@@ -2575,6 +2599,11 @@ fieldset[disabled] .navbar .btn-link:focus {
 }
 .navbar.navbar-info .dropdown-menu {
   border-radius: 2px;
+}
+@media (max-width: 767px) {
+  .navbar.navbar-info .dropdown-menu .dropdown-header {
+    background-color: #96d8f3;
+  }
 }
 .navbar.navbar-info .dropdown-menu li > a {
   font-size: 16px;
@@ -2612,6 +2641,11 @@ fieldset[disabled] .navbar .btn-link:focus {
 .navbar.navbar-warning .dropdown-menu {
   border-radius: 2px;
 }
+@media (max-width: 767px) {
+  .navbar.navbar-warning .dropdown-menu .dropdown-header {
+    background-color: #f6c63b;
+  }
+}
 .navbar.navbar-warning .dropdown-menu li > a {
   font-size: 16px;
   padding: 13px 16px;
@@ -2647,6 +2681,11 @@ fieldset[disabled] .navbar .btn-link:focus {
 }
 .navbar.navbar-danger .dropdown-menu {
   border-radius: 2px;
+}
+@media (max-width: 767px) {
+  .navbar.navbar-danger .dropdown-menu .dropdown-header {
+    background-color: #e67962;
+  }
 }
 .navbar.navbar-danger .dropdown-menu li > a {
   font-size: 16px;
