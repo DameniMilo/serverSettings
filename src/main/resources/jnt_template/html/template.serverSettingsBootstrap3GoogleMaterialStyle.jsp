@@ -35,6 +35,7 @@
             $.material.init();
             $(document).ready(function() {
                 $.material.init();
+                $('[data-toggle="tooltip"]').tooltip()
             });
         </script>
     </template:addResources>

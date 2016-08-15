@@ -16,7 +16,7 @@
 <jcr:node var="sites" path="/sites"/>
 <jcr:nodeProperty name="j:defaultSite" node="${sites}" var="defaultSite"/>
 <c:set var="defaultPrepackagedSite" value="acmespaceelektra.zip"/>
-<template:addResources type="javascript" resources="jquery.min.js,jquery-ui.min.js,workInProgress.js"/>
+<template:addResources type="javascript" resources="jquery.min.js,workInProgress.js"/>
 <template:addResources type="javascript" resources="datatables/jquery.dataTables.js,i18n/jquery.dataTables-${currentResource.locale}.js,datatables/dataTables.bootstrap-ext.js,dataTables.serverSettings.js"/>
 <jsp:useBean id="nowDate" class="java.util.Date" />
 <fmt:formatDate value="${nowDate}" pattern="yyyy-MM-dd-HH-mm" var="now"/>
