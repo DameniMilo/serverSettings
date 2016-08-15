@@ -25,3 +25,9 @@
 td .form-group {
     margin-top: 0;
 }
+
+.btn.btn-fab.btn-fab-xs {
+    height: 30px;
+    min-width: 30px;
+    width: 30px;
+}

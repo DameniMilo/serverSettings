@@ -110,21 +110,21 @@
         </div>
         <div class="panel-body">
             <input type="hidden" id="sitesFormAction" name="_eventId" value="" />
-            <a href="#create" id="createSite" class="btn btn-raised btn-primary sitesAction">
+            <a href="#create" id="createSite" class="btn btn-primary btn-sm sitesAction">
                 <i class="material-icons">add</i>
                 <fmt:message key="serverSettings.manageWebProjects.add"/>
             </a>
             <c:if test="${exportAllowed}">
-            <a href="#export" id="exportSites" class="btn btn-raised btn-default sitesAction-hide">
+            <a href="#export" id="exportSites" class="btn btn-default btn-sm sitesAction-hide">
                 <i class="material-icons">file_download</i>
                 <fmt:message key="label.export"/>
             </a>
-            <a href="#exportStaging" id="exportStagingSites" class="btn btn-raised btn-default sitesAction-hide">
+            <a href="#exportStaging" id="exportStagingSites" class="btn btn-default btn-sm sitesAction-hide">
                 <i class="material-icons">file_download</i>
                 <fmt:message key="label.export"/> (<fmt:message key="label.stagingContent"/>)
             </a>
             </c:if>
-            <a href="#delete" id="deleteSites" class="btn btn-raised btn-danger sitesAction">
+            <a href="#delete" id="deleteSites" class="btn btn-danger btn-sm sitesAction">
                 <i class="material-icons">delete</i>
                 <fmt:message key="label.delete"/>
             </a>
@@ -137,7 +137,7 @@
             </c:forEach>
 
             <table id="sitesTable" class="table table-bordered table-striped table-hover">
-            <thead>
+                <thead>
                     <tr>
                         <th class="{sorter: false}">&nbsp;</th>
                         <th>#</th>
@@ -183,14 +183,14 @@
                                 <td>${fn:escapeXml(site.serverName)}</td>
                                 <td title="${fn:escapeXml(site.templatePackageName)}">${fn:escapeXml(site.templateFolder)}</td>
                                 <td>
-                                    <div class="btn-group-sm">
+                                    <%--<div class="btn-group-sm">--%>
                                         <c:set var="i18nExportStaging"><fmt:message key="label.export"/> (<fmt:message key="label.stagingContent"/>)</c:set>
                                         <c:set var="i18nExportStaging" value="${fn:escapeXml(i18nExportStaging)}"/>
                                         <c:if test="${jcr:hasPermission(site,'editModeAccess')}">
                                             <c:choose>
                                                 <c:when test="${renderContext.settings.distantPublicationServerMode}">
                                                     <c:url var="editUrl" value="/cms/settings/default/${site.defaultLanguage}${site.path}.manageLanguages.html"/>
-                                                    <a style="margin-bottom:0;" class="btn btn-fab btn-default" href="${editUrl}" title="<fmt:message key='serverSettings.manageWebProjects.exitToEdit'/>">
+                                                    <a style="margin-bottom:0;" class="btn btn-fab btn-fab-xs btn-default" href="${editUrl}" title="<fmt:message key='serverSettings.manageWebProjects.exitToEdit'/>">
                                                         <i class="material-icons">forward</i>
                                                     </a>
                                                 </c:when>
@@ -198,28 +198,28 @@
                                                     <jcr:node var="editSite" path="${site.path}"/>
                                                     <c:if test="${not jcr:isNodeType(editSite, 'jmix:remotelyPublished')}">
                                                         <c:url var="editUrl" value="/cms/edit/default/${site.defaultLanguage}${editSite.home.path}.html"/>
-                                                        <a style="margin-bottom:0;" class="btn btn-fab btn-default" href="${editUrl}" title="<fmt:message key='serverSettings.manageWebProjects.exitToEdit'/>">
+                                                        <a style="margin-bottom:0;" class="btn btn-fab btn-fab-xs btn-default" href="${editUrl}" title="<fmt:message key='serverSettings.manageWebProjects.exitToEdit'/>">
                                                             <i class="material-icons">forward</i>
                                                         </a>
                                                     </c:if>
                                                 </c:otherwise>
                                             </c:choose>
                                         </c:if>
-                                        <a style="margin-bottom:0;" class="btn btn-fab btn-default" href="#edit" title="<fmt:message key='serverSettings.manageWebProjects.editSite'/>" onclick="submitSiteForm('editSite', '${site.name}'); return false;">
+                                        <a style="margin-bottom:0;" class="btn btn-fab btn-fab-xs btn-default" href="#edit" title="<fmt:message key='serverSettings.manageWebProjects.editSite'/>" onclick="submitSiteForm('editSite', '${site.name}'); return false;">
                                             <i class="material-icons">mode_edit</i>
                                         </a>
                                         <%--
-                                            <a style="margin-bottom:0;" class="btn btn-fab btn-default" href="#edit" title="<fmt:message key='label.export'/>" onclick="submitSiteForm('exportSites', '${site.name}'); return false;">
+                                            <a style="margin-bottom:0;" class="btn btn-fab btn-fab-xs btn-default" href="#edit" title="<fmt:message key='label.export'/>" onclick="submitSiteForm('exportSites', '${site.name}'); return false;">
                                                 <i class="material-icons">file_download</i>
                                             </a>
-                                            <a style="margin-bottom:0;" class="btn btn-fab btn-default" href="#edit" title="${i18nExportStaging}" onclick="submitSiteForm('exportStagingSites', '${site.name}'); return false;">
+                                            <a style="margin-bottom:0;" class="btn btn-fab btn-fab-xs btn-default" href="#edit" title="${i18nExportStaging}" onclick="submitSiteForm('exportStagingSites', '${site.name}'); return false;">
                                                 <i class="material-icons">file_download</i>
                                             </a>
                                         --%>
-                                        <a style="margin-bottom:0;" class="btn btn-fab btn-danger" title="<fmt:message key='label.delete'/>" href="#delete" onclick="submitSiteForm('deleteSites', '${site.name}'); return false;">
+                                        <a style="margin-bottom:0;" class="btn btn-fab btn-fab-xs btn-danger" title="<fmt:message key='label.delete'/>" href="#delete" onclick="submitSiteForm('deleteSites', '${site.name}'); return false;">
                                             <i class="material-icons">delete</i>
                                         </a>
-                                    </div>
+                                    <%--</div>--%>
                                 </td>
                             </tr>
                         </c:if>
@@ -233,11 +233,11 @@
                         <label class="control-label"><fmt:message key="serverSettings.manageWebProjects.exportServerDirectory"/></label>
                         <input class="form-control" type="text" name="exportPath"/>
                         <span class="input-group-btn">
-                            <a  class="btn btn-default sitesAction" id="exportToFile" href="#exportToFile" title="<fmt:message key='label.export'/>">
+                            <a  class="btn btn-sm btn-default sitesAction" id="exportToFile" href="#exportToFile" title="<fmt:message key='label.export'/>">
                                 <i class="material-icons">file_download</i>
                                 &nbsp;<fmt:message key='label.export'/>
                             </a>
-                            <a  class="btn btn-default sitesAction" id="exportToFileStaging" href="#exportToFileStaging" title="<fmt:message key="label.export"/> (<fmt:message key="label.stagingContent"/>)">
+                            <a  class="btn btn-sm btn-default sitesAction" id="exportToFileStaging" href="#exportToFileStaging" title="<fmt:message key="label.export"/> (<fmt:message key="label.stagingContent"/>)">
                                 <i class="material-icons">file_download</i>
                                 &nbsp; <fmt:message key="label.export"/> (<fmt:message key="label.stagingContent"/>)
                             </a>
@@ -259,11 +259,11 @@
                         <div class="form-group is-empty">
                             <div class="input-group">
                                 <span class="input-group-btn">
-                                    <a class="btn btn-default" href="<c:url value='/cms/export/default/systemsite_export_${now}.zip?exportformat=site&live=true&sitebox=systemsite' />">
+                                    <a class="btn btn-sm btn-default" href="<c:url value='/cms/export/default/systemsite_export_${now}.zip?exportformat=site&live=true&sitebox=systemsite' />">
                                         <i class="material-icons">file_download</i>
                                         <fmt:message key='label.export' />
                                     </a>
-                                    <a class="btn btn-default" href="<c:url value='/cms/export/default/systemsite_staging_export_${now}.zip?exportformat=site&live=false&sitebox=systemsite' />">
+                                    <a class="btn btn-sm btn-default" href="<c:url value='/cms/export/default/systemsite_staging_export_${now}.zip?exportformat=site&live=false&sitebox=systemsite' />">
                                         <i class="material-icons">file_download</i>
                                         <fmt:message key="label.export"/> (<fmt:message key="label.stagingContent"/>)
                                     </a>
@@ -289,7 +289,7 @@
                                 </c:forEach>
                             </select>
                             <span class="input-group-btn">
-                                <button class="btn btn-raised btn-primary" type="submit" name="importPrepackaged" onclick="submitSiteForm('importPrepackaged'); return false;">
+                                <button class="btn btn-sm btn-primary" type="submit" name="importPrepackaged" onclick="submitSiteForm('importPrepackaged'); return false;">
                                     <i class="material-icons">done</i>
                                     &nbsp;<fmt:message key='serverSettings.manageWebProjects.importprepackaged.proceed' />
                                 </button>
@@ -318,7 +318,7 @@
                             <label class="control-label"><fmt:message key="serverSettings.manageWebProjects.multipleimport.fileselect"/></label>
                             <input class="form-control" type="text" readonly>
                             <span class="input-group-btn">
-                                <button class="btn btn-raised btn-primary" type="submit" name="_eventId_import" onclick="">
+                                <button class="btn btn-sm btn-primary" type="submit" name="_eventId_import" onclick="">
                                     <i class="material-icons">file_upload</i>
                                     <fmt:message key='serverSettings.manageWebProjects.fileImport'/>
                                 </button>
@@ -333,7 +333,7 @@
                             <label class="control-label"><fmt:message key="serverSettings.manageWebProjects.multipleimport.fileinput"/></label>
                             <input class="form-control" type="text" name="importPath"/>
                             <span class="input-group-btn">
-                                <button class="btn btn-raised btn-primary" type="submit" name="_eventId_import" onclick="">
+                                <button class="btn btn-sm btn-primary" type="submit" name="_eventId_import" onclick="">
                                     <i class="material-icons">file_upload</i>
                                     <fmt:message key='serverSettings.manageWebProjects.fileImport'/>
                                 </button>
