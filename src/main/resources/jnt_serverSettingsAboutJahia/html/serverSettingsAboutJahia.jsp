@@ -13,11 +13,13 @@
 <%--@elvariable id="currentResource" type="org.jahia.services.render.Resource"--%>
 <%--@elvariable id="url" type="org.jahia.services.render.URLGenerator"--%>
 
+<div class="page-header">
     <h2>
-            Digital Experience Manager&nbsp;<%= Jahia.VERSION %>&nbsp;[<%= Jahia.CODE_NAME %>] - Community Distribution -&nbsp;<fmt:message key="serverSettings.aboutJahia.build"/>&nbsp;<%= Jahia.getBuildNumber() %>.<%= Jahia.getEEBuildNumber() %>
-            <c:if test="${ licensePackage.customTermsAndConditions eq 'true' }">
-                / <fmt:message key="serverSettings.aboutJahia.LicenceInfo.customTermsAndConditionsNotice" />
-            </c:if>
+        Digital Experience Manager&nbsp;<%= Jahia.VERSION %>&nbsp;[<%= Jahia.CODE_NAME %>] - Community Distribution -&nbsp;<fmt:message key="serverSettings.aboutJahia.build"/>&nbsp;<%= Jahia.getBuildNumber() %>.<%= Jahia.getEEBuildNumber() %>
+        <c:if test="${ licensePackage.customTermsAndConditions eq 'true' }">
+            / <fmt:message key="serverSettings.aboutJahia.LicenceInfo.customTermsAndConditionsNotice" />
+        </c:if>
     </h2>
+</div>
 
-    <pre class="text-center"><%=Jahia.getLicenseText()%></pre>
+<pre class="text-center"><%=Jahia.getLicenseText()%></pre>
