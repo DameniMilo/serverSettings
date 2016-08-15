@@ -17,131 +17,143 @@
 <%--@elvariable id="flowRequestContext" type="org.springframework.webflow.execution.RequestContext"--%>
 <%--@elvariable id="flowExecutionUrl" type="java.lang.String"--%>
 <%--@elvariable id="webprojectHandler" type="org.jahia.modules.serversettings.flow.WebprojectHandler"--%>
-<template:addResources type="javascript" resources="jquery.min.js,jquery-ui.min.js,jquery.blockUI.js,workInProgress.js,admin-bootstrap.js"/>
-<template:addResources type="css" resources="jquery-ui.smoothness.css,jquery-ui.smoothness-jahia.css"/>
+<template:addResources type="javascript" resources="jquery.min.js,jquery.blockUI.js,workInProgress.js"/>
 <fmt:message key="label.workInProgressTitle" var="i18nWaiting"/><c:set var="i18nWaiting" value="${functions:escapeJavaScript(i18nWaiting)}"/>
+
 <template:addResources>
-<script type="text/javascript">
-    $(document).ready(function() {
-        $('#${currentNode.identifier}-processImport').click(function() {workInProgress('${i18nWaiting}');});
-    });
-</script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#${currentNode.identifier}-processImport').click(function() {workInProgress('${i18nWaiting}');});
+        });
+    </script>
 </template:addResources>
 
-    <c:forEach items="${flowRequestContext.messageContext.allMessages}" var="message">
-        <c:if test="${message.severity eq 'ERROR' or message.severity eq 'WARNING'}">
-            <div class="alert${message.severity eq 'ERROR' ? ' alert-error' : ''}">
-                <button type="button" class="close" data-dismiss="alert">&times;</button>
-                    ${message.text}
-            </div>
-        </c:if>
-    </c:forEach>
+<div class="page-header">
+    <h2><fmt:message key="serverSettings.manageWebProjects.fileImport"/></h2>
+</div>
+
+<c:forEach items="${flowRequestContext.messageContext.allMessages}" var="message">
+    <c:if test="${message.severity eq 'ERROR' or message.severity eq 'WARNING'}">
+        <div class="alert${message.severity eq 'ERROR' ? ' alert-danger' : 'alert-info'}">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                ${message.text}
+        </div>
+    </c:if>
+</c:forEach>
 
 <form action="${flowExecutionUrl}" method="post">
-        <div class="box-1">
+    <div class="panel panel-default">
+        <div class="panel-body">
             <jsp:useBean id="validationErrors" class="java.util.HashMap" scope="request"/>
             <c:forEach items="${webprojectHandler.importsInfos}" var="importInfoMap">
-                    <label for="${importInfoMap.key}">
-                        <input type="checkbox" class="importCheckbox${importInfoMap.value.validationResult.blocking ? ' importBlocking' : ''}" id="${importInfoMap.key}" name="importsInfos['${importInfoMap.key}'].selected" value="true"
-                               <c:if test="${importInfoMap.value.selected}">checked="checked"</c:if>/> ${importInfoMap.key}
-                        <input type="hidden" id="${importInfoMap.key}" name="_importsInfos['${importInfoMap.key}'].selected"/>
-                    </label>
-                    <%@include file="importValidation.jspf"%>
-                    <c:if test="${importInfoMap.value.site}">
-                        <div class="container-fluid">
-                            <div class="row-fluid">
-                                <div class="span4">
-                                    <label for="${importInfoMap.value.siteKey}siteTitle">
-                                        <fmt:message key="serverSettings.manageWebProjects.webProject.title"/>
-                                    </label>
-                                    <input class="span12" type="text" id="${importInfoMap.value.siteKey}siteTitle"
-                                           name="importsInfos['${importInfoMap.key}'].siteTitle"
-                                           value="${fn:escapeXml(importInfoMap.value.siteTitle)}"/>
-                                </div>
-                                <div class="span4">
-                                    <label for="${importInfoMap.value.siteKey}siteServerName">
-                                        <fmt:message key="serverSettings.manageWebProjects.webProject.serverName"/>
-                                    </label>
-                                    <input class="span12" type="text" id="${importInfoMap.value.siteKey}siteServerName"
-                                           name="importsInfos['${importInfoMap.key}'].siteServername"
-                                           value="${fn:escapeXml(importInfoMap.value.siteServername)}"/>
-                                </div>
-                            </div>
-                            <div class="row-fluid">
-                                <div class="span4">
-                                    <label for="${importInfoMap.value.siteKey}siteKey">
-                                        <fmt:message key="serverSettings.manageWebProjects.webProject.siteKey"/>
-                                    </label>
-                                    <input class="span12" type="text" id="${importInfoMap.value.siteKey}siteKey"
-                                           name="importsInfos['${importInfoMap.key}'].siteKey"
-                                           value="${fn:escapeXml(importInfoMap.value.siteKey)}"/>
-                                </div>
-                                <div class="span4">
-                                    <label for="${importInfoMap.value.siteKey}templates">
-                                        <fmt:message key="serverSettings.webProjectSettings.pleaseChooseTemplateSet"/>
-                                    </label>
-                                    <select class="span12" id="${importInfoMap.value.siteKey}templates" name="importsInfos['${importInfoMap.key}'].templates">
-                                        <c:forEach items="${requestScope.templateSets}" var="module">
-                                            <option value="${module}" <c:if test="${importInfoMap.value.templates eq module}"> selected="selected"</c:if>>${module}</option>
-                                        </c:forEach>
-                                    </select>
-                                </div>
-                            </div>
-                            <c:if test="${importInfoMap.value.legacyImport}">
-                                <div class="row-fluid">
-                                    <div class="span4">
-                                        <label for="${importInfoMap.value.siteKey}legacyMapping">
-                                            <fmt:message key="serverSettings.manageWebProjects.selectDefinitionMapping"/>
-                                        </label>
-                                        <select class="span12" id="${importInfoMap.value.siteKey}legacyMapping"
-                                                name="importsInfos['${importInfoMap.key}'].selectedLegacyMapping">
-                                            <c:forEach items="${importInfoMap.value.legacyMappings}" var="module">
-                                                <option value="${module}" <c:if
-                                                        test="${importInfoMap.value.selectedLegacyMapping eq module}"> selected="selected"</c:if>>${module}</option>
-                                            </c:forEach>
-                                        </select>
-                                    </div>
-                                    <div class="span4">
-                                        <label for="${importInfoMap.value.siteKey}legacyDefinitions">
-                                            <fmt:message key="serverSettings.manageWebProjects.selectLegacyDefinitions"/>
-                                        </label>
-                                        <select class="span12" id="${importInfoMap.value.siteKey}legacyDefinitions"
-                                                name="importsInfos['${importInfoMap.key}'].selectedLegacyDefinitions">
-                                            <c:forEach items="${importInfoMap.value.legacyDefinitions}" var="module">
-                                                <option value="${module}" <c:if
-                                                        test="${importInfoMap.value.selectedLegacyDefinitions eq module}"> selected="selected"</c:if>>${module}</option>
-                                            </c:forEach>
-                                        </select>
-                                    </div>
-                                </div>
-                            </c:if>
+                <div class="form-group form-group-sm">
+                    <div class="checkbox">
+                        <label for="${importInfoMap.key}">
+                            <input type="checkbox" id="${importInfoMap.key}"
+                                   class="importCheckbox${importInfoMap.value.validationResult.blocking ? ' importBlocking' : ''}"
+                                   name="importsInfos['${importInfoMap.key}'].selected" value="true"
+                                   <c:if test="${importInfoMap.value.selected}">checked="checked"</c:if>/>
+                                   ${importInfoMap.key}
+                        </label>
+                    </div>
+                    <input type="hidden" id="${importInfoMap.key}" name="_importsInfos['${importInfoMap.key}'].selected"/>
+                </div>
+
+                <%@ include file="importValidation.jspf" %>
+
+                <c:if test="${importInfoMap.value.site}">
+                    <div class="form-group form-group-sm label-floating">
+                        <label class="control-label" for="${importInfoMap.value.siteKey}siteTitle">
+                            <fmt:message key="serverSettings.manageWebProjects.webProject.title"/>
+                        </label>
+                        <input class="form-control" type="text" id="${importInfoMap.value.siteKey}siteTitle"
+                               name="importsInfos['${importInfoMap.key}'].siteTitle"
+                               value="${fn:escapeXml(importInfoMap.value.siteTitle)}"/>
+                    </div>
+
+                    <div class="form-group form-group-sm label-floating">
+                        <label class="control-label" for="${importInfoMap.value.siteKey}siteServerName">
+                            <fmt:message key="serverSettings.manageWebProjects.webProject.serverName"/>
+                        </label>
+                        <input class="form-control" type="text" id="${importInfoMap.value.siteKey}siteServerName"
+                               name="importsInfos['${importInfoMap.key}'].siteServername"
+                               value="${fn:escapeXml(importInfoMap.value.siteServername)}"/>
+                    </div>
+
+                    <div class="form-group form-group-sm label-floating">
+                        <label class="control-label" for="${importInfoMap.value.siteKey}siteKey">
+                            <fmt:message key="serverSettings.manageWebProjects.webProject.siteKey"/>
+                        </label>
+                        <input class="form-control" type="text" id="${importInfoMap.value.siteKey}siteKey"
+                               name="importsInfos['${importInfoMap.key}'].siteKey"
+                               value="${fn:escapeXml(importInfoMap.value.siteKey)}"/>
+                    </div>
+
+                    <div class="form-group form-group-sm label-floating">
+                        <label class="control-label" for="${importInfoMap.value.siteKey}templates">
+                            <fmt:message key="serverSettings.webProjectSettings.pleaseChooseTemplateSet"/>
+                        </label>
+                        <select class="form-control" id="${importInfoMap.value.siteKey}templates" name="importsInfos['${importInfoMap.key}'].templates">
+                            <c:forEach items="${requestScope.templateSets}" var="module">
+                                <option value="${module}" <c:if test="${importInfoMap.value.templates eq module}"> selected="selected"</c:if>>${module}</option>
+                            </c:forEach>
+                        </select>
+                    </div>
+
+                    <c:if test="${importInfoMap.value.legacyImport}">
+                        <div class="form-group form-group-sm label-floating">
+                            <label class="control-label" for="${importInfoMap.value.siteKey}legacyMapping">
+                                <fmt:message key="serverSettings.manageWebProjects.selectDefinitionMapping"/>
+                            </label>
+                            <select class="form-control" id="${importInfoMap.value.siteKey}legacyMapping"
+                                    name="importsInfos['${importInfoMap.key}'].selectedLegacyMapping">
+                                <c:forEach items="${importInfoMap.value.legacyMappings}" var="module">
+                                    <option value="${module}" <c:if
+                                            test="${importInfoMap.value.selectedLegacyMapping eq module}"> selected="selected"</c:if>>${module}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
+                        <div class="form-group form-group-sm label-floating">
+                            <label class="control-label" for="${importInfoMap.value.siteKey}legacyDefinitions">
+                                <fmt:message key="serverSettings.manageWebProjects.selectLegacyDefinitions"/>
+                            </label>
+                            <select class="form-control" id="${importInfoMap.value.siteKey}legacyDefinitions"
+                                    name="importsInfos['${importInfoMap.key}'].selectedLegacyDefinitions">
+                                <c:forEach items="${importInfoMap.value.legacyDefinitions}" var="module">
+                                    <option value="${module}" <c:if
+                                            test="${importInfoMap.value.selectedLegacyDefinitions eq module}"> selected="selected"</c:if>>${module}</option>
+                                </c:forEach>
+                            </select>
                         </div>
                     </c:if>
+                </c:if>
             </c:forEach>
-            <button class="btn btn-primary" type="submit" name="_eventId_processImport" id="${currentNode.identifier}-processImport"
+            <button class="btn btn-sm btn-default" type="submit" name="_eventId_cancel">
+                <i class="material-icons">cancel</i>
+                <fmt:message key='label.cancel'/>
+            </button>
+            <button class="btn btn-sm btn-primary pull-right" type="submit" name="_eventId_processImport" id="${currentNode.identifier}-processImport"
                     <c:if test="${not empty validationErrors or empty webprojectHandler.importsInfos}"> disabled="disabled"</c:if> >
-                <i class="icon-chevron-right icon-white"></i>
-                &nbsp;<fmt:message key='label.next'/>
+                <fmt:message key='label.next'/>
+                <i class="material-icons">navigate_next</i>
             </button>
-            <button class="btn" type="submit" name="_eventId_cancel">
-                <i class="icon-ban-circle"></i>
-                &nbsp;<fmt:message key='label.cancel'/>
-            </button>
+        </div>
     </div>
 </form>
+
 <c:if test="${not empty validationErrors}">
-<script type="text/javascript">
-    $(document).ready(function () {
-        function checkBlockingImports() {
-            if ($(".importBlocking:checked").length == 0) {
-                $("#${currentNode.identifier}-processImport").removeAttr("disabled");
-            } else {
-                $("#${currentNode.identifier}-processImport").attr("disabled", "disabled");
+    <script type="text/javascript">
+        $(document).ready(function () {
+            function checkBlockingImports() {
+                if ($(".importBlocking:checked").length == 0) {
+                    $("#${currentNode.identifier}-processImport").removeAttr("disabled");
+                } else {
+                    $("#${currentNode.identifier}-processImport").attr("disabled", "disabled");
+                }
             }
-        }
-        checkBlockingImports();
-        $(".importBlocking").change(checkBlockingImports);
-    });
-</script>
+            checkBlockingImports();
+            $(".importBlocking").change(checkBlockingImports);
+        });
+    </script>
 </c:if>
 

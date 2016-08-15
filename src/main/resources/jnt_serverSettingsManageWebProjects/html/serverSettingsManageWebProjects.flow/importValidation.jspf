@@ -18,6 +18,7 @@
 <%--@elvariable id="flowRequestContext" type="org.springframework.webflow.execution.RequestContext"--%>
 <%--@elvariable id="flowExecutionUrl" type="java.lang.String"--%>
 <%--@elvariable id="webprojectHandler" type="org.jahia.modules.serversettings.flow.WebprojectHandler"--%>
+
 <c:forEach var="checks" items="${importInfoMap.value.validationResult.results}">
     <c:if test="${!checks.successful}">
         <c:set target="${validationErrors}" property="${importInfoMap.key}" value="${importInfoMap.key}"/>
@@ -27,7 +28,7 @@
                     <fmt:message key="failure.import.missingTemplateSet" var="errorSummary">
                         <fmt:param value="${checks.targetTemplateSet}"/>
                     </fmt:message>
-                    <div class="alert${checks.blocking ? ' alert-error' : ''}">
+                    <div class="alert${checks.blocking ? ' alert-danger' : 'alert-info'}">
                         <button type="button" class="close" data-dismiss="alert">&times;</button>
                             ${fn:escapeXml(errorSummary)}
                     </div>
@@ -36,19 +37,20 @@
                     <fmt:message key="failure.import.missingModules" var="errorSummary">
                         <fmt:param value="${fn:length(checks.missingModules)}"/>
                     </fmt:message>
-                    <div>
-                        <div class="alert${checks.blocking ? ' alert-error' : ''}">
-                            <button type="button" class="close" data-dismiss="alert">&times;</button>
-                                ${fn:escapeXml(errorSummary)}
-                        </div>
-                        <fmt:message key="label.detailed" var="i18nHelp"/><c:set var="i18nHelp"
-                                                                                 value="${fn:escapeXml(i18nHelp)}"/>
-                        <a class="btn btn-info" href="#details"
-                           onclick="$('#validationErrorsDetailsModules${importInfoMap.value.siteKey}').toggle(); return false;"
-                           title="${i18nHelp}"><i class="icon-info-sign icon-white"></i>&nbsp;${i18nHelp}</a>
+                    <div class="alert${checks.blocking ? ' alert-danger' : 'alert-info'}">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            ${fn:escapeXml(errorSummary)}
                     </div>
+
+                    <fmt:message key="label.detailed" var="i18nHelp"/>
+                    <c:set var="i18nHelp" value="${fn:escapeXml(i18nHelp)}"/>
+                    <a class="btn btn-sm btn-info" href="#details"
+                       onclick="$('#validationErrorsDetailsModules${importInfoMap.value.siteKey}').toggle(); return false;"
+                       title="${i18nHelp}">
+                        <i class="material-icons">info</i>${i18nHelp}
+                    </a>
                     <div id="validationErrorsDetailsModules${importInfoMap.value.siteKey}" style="display: none">
-                        <ul>
+                        <ul class="list-unstyled">
                             <c:forEach var="module" items="${checks.missingModules}">
                                 <li>${fn:escapeXml(module)}</li>
                             </c:forEach>
@@ -63,20 +65,23 @@
                     <fmt:param value="${fn:length(checks.missingMixins)}"/>
                 </fmt:message>
                 <div>
-                    <div class="alert${checks.blocking ? ' alert-error' : ''}">
+                    <div class="alert${checks.blocking ? ' alert-danger' : 'alert-info'}">
                         <button type="button" class="close" data-dismiss="alert">&times;</button>
                             ${fn:escapeXml(errorSummary)}
                     </div>
-                    <fmt:message key="label.detailed" var="i18nHelp"/><c:set var="i18nHelp"
-                                                                             value="${fn:escapeXml(i18nHelp)}"/>
-                    <a class="btn btn-info" href="#details"
+
+                    <fmt:message key="label.detailed" var="i18nHelp"/>
+                    <c:set var="i18nHelp" value="${fn:escapeXml(i18nHelp)}"/>
+                    <a class="btn btn-sm btn-info" href="#details"
                        onclick="$('#validationErrorsDetailsNodetypes${importInfoMap.value.siteKey}').toggle(); return false;"
-                       title="${i18nHelp}"><i class="icon-info-sign icon-white"></i>&nbsp;${i18nHelp}</a>
+                       title="${i18nHelp}">
+                        <i class="material-icons">info</i>${i18nHelp}
+                    </a>
                 </div>
                 <div id="validationErrorsDetailsNodetypes${importInfoMap.value.siteKey}" style="display: none">
                     <c:if test="${not empty checks.missingNodetypes}">
                         <h2><fmt:message key="serverSettings.manageWebProjects.import.missingNodetypes"/></h2>
-                        <ul>
+                        <ul class="list-unstyled">
                             <c:forEach var="nt" items="${checks.missingNodetypes}">
                                 <li>${fn:escapeXml(nt.key)}
                                     <ul>
@@ -100,7 +105,7 @@
                     </c:if>
                     <c:if test="${not empty checks.missingMixins}">
                         <h2><fmt:message key="serverSettings.manageWebProjects.import.missingMixins"/></h2>
-                        <ul>
+                        <ul class="list-unstyled">
                             <c:forEach var="nt" items="${checks.missingMixins}">
                                 <li>${fn:escapeXml(nt.key)}
                                     <ul>
@@ -113,9 +118,11 @@
                                                     ${path}${lineBreak}
                                                 </c:forEach>
                                             </c:set>
-                                            <li><a href="#showAll"
+                                            <li>
+                                                <a href="#showAll"
                                                    onclick='alert("${functions:escapeJavaScript(all)}"); return false;'>...&lt;<fmt:message
-                                                    key="label.all"/>&gt;</a></li>
+                                                    key="label.all"/>&gt;</a>
+                                            </li>
                                         </c:if>
                                     </ul>
                                 </li>
@@ -129,19 +136,22 @@
                 <fmt:message key="failure.import.missingTemplates" var="errorSummary">
                     <fmt:param value="${fn:length(checks.missingTemplates)}"/>
                 </fmt:message>
-                <div style="display: block">
-                    <div class="alert${checks.blocking ? ' alert-error' : ''}">
-                        <button type="button" class="close" data-dismiss="alert">&times;</button>
-                            ${fn:escapeXml(errorSummary)}
-                    </div>
-                    <fmt:message key="label.detailed" var="i18nHelp"/><c:set var="i18nHelp"
-                                                                             value="${fn:escapeXml(i18nHelp)}"/>
-                    <a class="btn btn-info" href="#details"
-                       onclick="$('#validationErrorsDetailsTemplates${importInfoMap.value.siteKey}').toggle(); return false;"
-                       title="${i18nHelp}"><i class="icon-info-sign icon-white"></i>&nbsp;${i18nHelp}</a>
+
+                <div class="alert${checks.blocking ? ' alert-danger' : 'alert-info'}">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        ${fn:escapeXml(errorSummary)}
                 </div>
+
+                <fmt:message key="label.detailed" var="i18nHelp"/>
+                <c:set var="i18nHelp" value="${fn:escapeXml(i18nHelp)}"/>
+                <a class="btn btn-sm btn-info" href="#details"
+                   onclick="$('#validationErrorsDetailsTemplates${importInfoMap.value.siteKey}').toggle(); return false;"
+                   title="${i18nHelp}">
+                    <i class="material-icons">info</i>${i18nHelp}
+                </a>
+
                 <div id="validationErrorsDetailsTemplates${importInfoMap.value.siteKey}" style="display: none">
-                    <ul>
+                    <ul class="list-unstyled">
                         <c:forEach var="tmpl" items="${checks.missingTemplates}">
                             <li>${fn:escapeXml(tmpl.key)}
                                 <ul>
@@ -168,20 +178,20 @@
                 <fmt:message key="serverSettings.manageWebProjects.import.missingPortlets" var="errorSummary">
                     <fmt:param value="${fn:length(checks.missingPortlets)}"/>
                 </fmt:message>
-                <div style="display: block">
-                    <div class="alert${checks.blocking ? ' alert-error' : ''}">
-                        <button type="button" class="close" data-dismiss="alert">&times;</button>
-                            ${fn:escapeXml(errorSummary)}
-                    </div>
-
-                    <fmt:message key="label.detailed" var="i18nHelp"/><c:set var="i18nHelp"
-                                                                             value="${fn:escapeXml(i18nHelp)}"/>
-                    <a class="btn btn-info" href="#details"
-                       onclick="$('#validationErrorsDetailsTemplates${importInfoMap.value.siteKey}').toggle(); return false;"
-                       title="${i18nHelp}"><i class="icon-info-sign icon-white"></i>&nbsp;${i18nHelp}</a>
+                <div class="alert${checks.blocking ? ' alert-danger' : 'alert-info'}">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        ${fn:escapeXml(errorSummary)}
                 </div>
+
+                <fmt:message key="label.detailed" var="i18nHelp"/>
+                <c:set var="i18nHelp" value="${fn:escapeXml(i18nHelp)}"/>
+                <a class="btn btn-sm btn-info" href="#details"
+                   onclick="$('#validationErrorsDetailsTemplates${importInfoMap.value.siteKey}').toggle(); return false;"
+                   title="${i18nHelp}">
+                    <i class="material-icons">info</i>${i18nHelp}
+                </a>
                 <div id="validationErrorsDetailsTemplates${importInfoMap.value.siteKey}" style="display: none">
-                    <ul>
+                    <ul class="list-unstyled">
                         <c:forEach var="portlet" items="${checks.missingPortlets}">
                             <li>${fn:escapeXml(portlet)}</li>
                         </c:forEach>
@@ -193,20 +203,20 @@
                 <fmt:message key="serverSettings.manageWebProjects.import.unavailableProviders" var="errorSummary">
                     <fmt:param value="${fn:length(checks.unavailableProviders)}"/>
                 </fmt:message>
-                <div style="display: block">
-                    <div class="alert${checks.blocking ? ' alert-error' : ''}">
-                        <button type="button" class="close" data-dismiss="alert">&times;</button>
-                            ${fn:escapeXml(errorSummary)}
-                    </div>
-
-                    <fmt:message key="label.detailed" var="i18nHelp"/><c:set var="i18nHelp"
-                                                                             value="${fn:escapeXml(i18nHelp)}"/>
-                    <a class="btn btn-info" href="#details"
-                       onclick="$('#validationErrorsDetailsProviders${importInfoMap.value.siteKey}').toggle(); return false;"
-                       title="${i18nHelp}"><i class="icon-info-sign icon-white"></i>&nbsp;${i18nHelp}</a>
+                <div class="alert${checks.blocking ? ' alert-danger' : 'alert-info'}">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        ${fn:escapeXml(errorSummary)}
                 </div>
+
+                <fmt:message key="label.detailed" var="i18nHelp"/>
+                <c:set var="i18nHelp" value="${fn:escapeXml(i18nHelp)}"/>
+                <a class="btn btn-sm btn-info" href="#details"
+                   onclick="$('#validationErrorsDetailsProviders${importInfoMap.value.siteKey}').toggle(); return false;"
+                   title="${i18nHelp}">
+                    <i class="material-icons">info</i>${i18nHelp}
+                </a>
                 <div id="validationErrorsDetailsProviders${importInfoMap.value.siteKey}" style="display: none">
-                    <ul>
+                    <ul class="list-unstyled">
                         <c:forEach var="provider" items="${checks.unavailableProviders}">
                             <li>${fn:escapeXml(provider)}</li>
                         </c:forEach>
@@ -215,24 +225,21 @@
             </c:when>
 
             <c:otherwise>
-                <div style="display: block">
-                    <c:catch var="exception"><c:set var="dummy" value="${checks.messageKey} ${checks.messageParams}"/></c:catch>
-                    <c:if test="${empty exception}">
-                        <fmt:message key="${checks.messageKey}" var="errorSummary">
-                            <c:forEach items="${checks.messageParams}" var="p">
-                                <fmt:param value="${p}"/>
-                            </c:forEach>
-                        </fmt:message>
-                    </c:if>
-                    <c:if test="${not empty exception}">
-                        <c:set var="errorSummary" value="${checks}"/>
-                    </c:if>
+                <c:catch var="exception"><c:set var="dummy" value="${checks.messageKey} ${checks.messageParams}"/></c:catch>
+                <c:if test="${empty exception}">
+                    <fmt:message key="${checks.messageKey}" var="errorSummary">
+                        <c:forEach items="${checks.messageParams}" var="p">
+                            <fmt:param value="${p}"/>
+                        </c:forEach>
+                    </fmt:message>
+                </c:if>
+                <c:if test="${not empty exception}">
+                    <c:set var="errorSummary" value="${checks}"/>
+                </c:if>
 
-                    <div class="alert${checks.blocking ? ' alert-error' : ''}">
-                        <button type="button" class="close" data-dismiss="alert">&times;</button>
-                            ${fn:escapeXml(errorSummary)}
-                    </div>
-
+                <div class="alert${checks.blocking ? ' alert-danger' : 'alert-info'}">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        ${fn:escapeXml(errorSummary)}
                 </div>
             </c:otherwise>
         </c:choose>
