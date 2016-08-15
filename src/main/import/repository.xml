@@ -12,7 +12,7 @@
                 <portlets jcr:primaryType="jnt:portletFolder"/>
                 <files jcr:primaryType="jnt:folder"/>
                 <contents jcr:primaryType="jnt:contentFolder"/>
-            <templates j:rootTemplatePath="/" jcr:primaryType="jnt:templatesFolder">
+                <templates j:rootTemplatePath="/" jcr:primaryType="jnt:templatesFolder">
                     <files jcr:primaryType="jnt:folder">
                         <serveradmin jcr:primaryType="jnt:folder">
                             <aboutJahia.png j:height="16"
@@ -87,9 +87,9 @@
                                 <cache jcr:primaryType="jnt:folder"/>
                                 <memory jcr:primaryType="jnt:folder">
                                     <memory.png j:height="16"
-                                      j:width="16"
-                                      jcr:mixinTypes="jmix:image"
-                                      jcr:primaryType="jnt:file">
+                                    j:width="16"
+                                    jcr:mixinTypes="jmix:image"
+                                    jcr:primaryType="jnt:file">
                                         <jcr:content jcr:mimeType="image/png" jcr:primaryType="jnt:resource"/>
                                         <thumbnail jcr:mimeType="image/png" jcr:primaryType="jnt:resource"/>
                                         <thumbnail2 jcr:mimeType="image/png" jcr:primaryType="jnt:resource"/>
@@ -157,9 +157,9 @@
                                 </manage_x0020_users>
                                 <manage_x0020_groups jcr:primaryType="jnt:folder">
                                     <users_into.png j:height="16"
-                                          j:width="16"
-                                          jcr:mixinTypes="jmix:image"
-                                          jcr:primaryType="jnt:file">
+                                        j:width="16"
+                                        jcr:mixinTypes="jmix:image"
+                                        jcr:primaryType="jnt:file">
                                         <jcr:content jcr:mimeType="image/png" jcr:primaryType="jnt:resource"/>
                                         <thumbnail jcr:mimeType="image/png" jcr:primaryType="jnt:resource"/>
                                         <thumbnail2 jcr:mimeType="image/png" jcr:primaryType="jnt:resource"/>
@@ -206,10 +206,10 @@
                             </web_x0020_projects>
                         </serveradmin>
                     </files>
-                <contents jcr:primaryType="jnt:contentFolder"/>
+                    <contents jcr:primaryType="jnt:contentFolder"/>
                     <server-settings-base j:view="serverSettings"
-                                jcr:mixinTypes="jmix:useUILocale"
-                                jcr:primaryType="jnt:template">
+                                  jcr:mixinTypes="jmix:useUILocale"
+                                  jcr:primaryType="jnt:template">
                         <aboutJahia j:applyOn="jnt:globalSettings"
                            j:defaultTemplate="false"
                            j:hiddenTemplate="false"
@@ -218,27 +218,28 @@
                            j:titleKey="serverSettings.aboutJahia"
                            jcr:mixinTypes="jmix:rbTitle"
                            jcr:primaryType="jnt:contentTemplate">
-                        <pagecontent jcr:primaryType="jnt:contentList">
-                            <about-jahia jcr:primaryType="jnt:serverSettingsAboutJahia"/>
-                        </pagecontent>
-                    </aboutJahia>
+                            <pagecontent jcr:primaryType="jnt:contentList">
+                                <about-jahia jcr:primaryType="jnt:serverSettingsAboutJahia"/>
+                            </pagecontent>
+                        </aboutJahia>
                         <webProjectSettings j:applyOn="jnt:globalSettings"
                                    j:defaultTemplate="false"
                                    j:hiddenTemplate="false"
                                    j:icon="/modules/serverSettings/templates/files/serveradmin/web_x0020_projects/webprojects.png"
                                    j:requiredPermissionNames="adminVirtualSites"
                                    j:titleKey="serverSettings.manageWebProjects"
+                                   j:view="serverSettingsBootstrap3GoogleMaterialStyle"
                                    jcr:mixinTypes="jmix:rbTitle"
                                    jcr:primaryType="jnt:contentTemplate">
-                        <pagecontent jcr:primaryType="jnt:contentList">
-                            <manage-web-projects jcr:primaryType="jnt:serverSettingsManageWebProjects"/>
-                        </pagecontent>
-                    </webProjectSettings>
+                            <pagecontent jcr:primaryType="jnt:contentList">
+                                <manage-web-projects jcr:primaryType="jnt:serverSettingsManageWebProjects"/>
+                            </pagecontent>
+                        </webProjectSettings>
                         <configurations j:hiddenTemplate="false"
                                j:icon="/modules/serverSettings/templates/files/serveradmin/configurations/configurations.png"
-                                j:titleKey="serverSettings.configurations"
-                                jcr:mixinTypes="jmix:rbTitle"
-                                jcr:primaryType="jnt:template">
+                               j:titleKey="serverSettings.configurations"
+                               jcr:mixinTypes="jmix:rbTitle"
+                               jcr:primaryType="jnt:template">
                             <mailServerSettings j:applyOn="jnt:globalSettings"
                                       j:defaultTemplate="false"
                                       j:hiddenTemplate="false"
@@ -279,15 +280,15 @@
                                              jcr:mixinTypes="mix:title"
                                              jcr:primaryType="jnt:translation"
                                              jcr:title="search settings"/>
-                            </search-settings>
+                                    </search-settings>
                                 </pagecontent>
                             </search-settings>
                         </configurations>
                         <system-components j:hiddenTemplate="false"
                                   j:icon="/modules/serverSettings/templates/files/serveradmin/system_x0020_components/system_components.png"
-                                j:titleKey="serverSettings.systemComponents"
-                                jcr:mixinTypes="jmix:rbTitle"
-                                jcr:primaryType="jnt:template">
+                                  j:titleKey="serverSettings.systemComponents"
+                                  jcr:mixinTypes="jmix:rbTitle"
+                                  jcr:primaryType="jnt:template">
                             <managePortlets j:applyOn="jnt:globalSettings"
                                   j:defaultTemplate="false"
                                   j:hiddenTemplate="false"
@@ -307,13 +308,13 @@
                                 jcr:mixinTypes="jmix:rbTitle"
                                 jcr:primaryType="jnt:template">
                             <manageServerRoles j:applyOn="jnt:globalSettings"
-                                         j:defaultTemplate="false"
-                                         j:hiddenTemplate="false"
-                                         j:icon="/modules/serverSettings/templates/files/serveradmin/users_x0020_and_x0020_roles/manage_x0020_users/manage_users.png"
-                                         j:requiredPermissionNames="adminServerRoles"
-                                         j:titleKey="serverSettings.manageServerRoles"
-                                         jcr:mixinTypes="jmix:rbTitle"
-                                         jcr:primaryType="jnt:contentTemplate">
+                                     j:defaultTemplate="false"
+                                     j:hiddenTemplate="false"
+                                     j:icon="/modules/serverSettings/templates/files/serveradmin/users_x0020_and_x0020_roles/manage_x0020_users/manage_users.png"
+                                     j:requiredPermissionNames="adminServerRoles"
+                                     j:titleKey="serverSettings.manageServerRoles"
+                                     jcr:mixinTypes="jmix:rbTitle"
+                                     jcr:primaryType="jnt:contentTemplate">
                                 <pagecontent jcr:primaryType="jnt:contentList">
                                     <manage-server-roles contextNodePath="/"
                                              jcr:primaryType="jnt:manageRoles"
@@ -372,9 +373,9 @@
                         </users-and-roles>
                         <system-health j:hiddenTemplate="false"
                               j:icon="/modules/serverSettings/templates/files/serveradmin/system_x0020_health/system_health.png"
-                                j:titleKey="serverSettings.systemHealth"
-                                jcr:mixinTypes="jmix:rbTitle"
-                                jcr:primaryType="jnt:template">
+                              j:titleKey="serverSettings.systemHealth"
+                              jcr:mixinTypes="jmix:rbTitle"
+                              jcr:primaryType="jnt:template">
                             <systemInfos j:applyOn="jnt:globalSettings"
                                j:defaultTemplate="false"
                                j:hiddenTemplate="false"
@@ -424,9 +425,9 @@
                                 </pagecontent>
                             </reportAnIssue>
                         </system-health>
-                </server-settings-base>
-            </templates>
+                    </server-settings-base>
+                </templates>
                 
-        </serverSettings>
+            </serverSettings>
     </modules>
 </content>
