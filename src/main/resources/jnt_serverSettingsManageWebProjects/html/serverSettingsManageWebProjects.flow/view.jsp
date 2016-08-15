@@ -175,7 +175,7 @@
                                 <td>
                                     ${loopStatus.index + 1}
                                     <c:if test="${site.identifier == defaultSite.string}">
-                                        <i class="material-icons">star_rate</i>
+                                        <i class="material-icons material-icons-small">star_rate</i>
                                     </c:if>
                                 </td>
                                 <td><a href="#edit" onclick="submitSiteForm('editSite', '${site.name}'); return false;">${fn:escapeXml(site.title)}</a></td>
@@ -183,43 +183,41 @@
                                 <td>${fn:escapeXml(site.serverName)}</td>
                                 <td title="${fn:escapeXml(site.templatePackageName)}">${fn:escapeXml(site.templateFolder)}</td>
                                 <td>
-                                    <%--<div class="btn-group-sm">--%>
-                                        <c:set var="i18nExportStaging"><fmt:message key="label.export"/> (<fmt:message key="label.stagingContent"/>)</c:set>
-                                        <c:set var="i18nExportStaging" value="${fn:escapeXml(i18nExportStaging)}"/>
-                                        <c:if test="${jcr:hasPermission(site,'editModeAccess')}">
-                                            <c:choose>
-                                                <c:when test="${renderContext.settings.distantPublicationServerMode}">
-                                                    <c:url var="editUrl" value="/cms/settings/default/${site.defaultLanguage}${site.path}.manageLanguages.html"/>
+                                    <c:set var="i18nExportStaging"><fmt:message key="label.export"/> (<fmt:message key="label.stagingContent"/>)</c:set>
+                                    <c:set var="i18nExportStaging" value="${fn:escapeXml(i18nExportStaging)}"/>
+                                    <c:if test="${jcr:hasPermission(site,'editModeAccess')}">
+                                        <c:choose>
+                                            <c:when test="${renderContext.settings.distantPublicationServerMode}">
+                                                <c:url var="editUrl" value="/cms/settings/default/${site.defaultLanguage}${site.path}.manageLanguages.html"/>
+                                                <a style="margin-bottom:0;" class="btn btn-fab btn-fab-xs btn-default" href="${editUrl}" title="<fmt:message key='serverSettings.manageWebProjects.exitToEdit'/>">
+                                                    <i class="material-icons">exit_to_app</i>
+                                                </a>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <jcr:node var="editSite" path="${site.path}"/>
+                                                <c:if test="${not jcr:isNodeType(editSite, 'jmix:remotelyPublished')}">
+                                                    <c:url var="editUrl" value="/cms/edit/default/${site.defaultLanguage}${editSite.home.path}.html"/>
                                                     <a style="margin-bottom:0;" class="btn btn-fab btn-fab-xs btn-default" href="${editUrl}" title="<fmt:message key='serverSettings.manageWebProjects.exitToEdit'/>">
                                                         <i class="material-icons">exit_to_app</i>
                                                     </a>
-                                                </c:when>
-                                                <c:otherwise>
-                                                    <jcr:node var="editSite" path="${site.path}"/>
-                                                    <c:if test="${not jcr:isNodeType(editSite, 'jmix:remotelyPublished')}">
-                                                        <c:url var="editUrl" value="/cms/edit/default/${site.defaultLanguage}${editSite.home.path}.html"/>
-                                                        <a style="margin-bottom:0;" class="btn btn-fab btn-fab-xs btn-default" href="${editUrl}" title="<fmt:message key='serverSettings.manageWebProjects.exitToEdit'/>">
-                                                            <i class="material-icons">exit_to_app</i>
-                                                        </a>
-                                                    </c:if>
-                                                </c:otherwise>
-                                            </c:choose>
-                                        </c:if>
-                                        <a style="margin-bottom:0;" class="btn btn-fab btn-fab-xs btn-default" href="#edit" title="<fmt:message key='serverSettings.manageWebProjects.editSite'/>" onclick="submitSiteForm('editSite', '${site.name}'); return false;">
-                                            <i class="material-icons">mode_edit</i>
+                                                </c:if>
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </c:if>
+                                    <a style="margin-bottom:0;" class="btn btn-fab btn-fab-xs btn-default" href="#edit" title="<fmt:message key='serverSettings.manageWebProjects.editSite'/>" onclick="submitSiteForm('editSite', '${site.name}'); return false;">
+                                        <i class="material-icons">mode_edit</i>
+                                    </a>
+                                    <%--
+                                        <a style="margin-bottom:0;" class="btn btn-fab btn-fab-xs btn-default" href="#edit" title="<fmt:message key='label.export'/>" onclick="submitSiteForm('exportSites', '${site.name}'); return false;">
+                                            <i class="material-icons">file_download</i>
                                         </a>
-                                        <%--
-                                            <a style="margin-bottom:0;" class="btn btn-fab btn-fab-xs btn-default" href="#edit" title="<fmt:message key='label.export'/>" onclick="submitSiteForm('exportSites', '${site.name}'); return false;">
-                                                <i class="material-icons">file_download</i>
-                                            </a>
-                                            <a style="margin-bottom:0;" class="btn btn-fab btn-fab-xs btn-default" href="#edit" title="${i18nExportStaging}" onclick="submitSiteForm('exportStagingSites', '${site.name}'); return false;">
-                                                <i class="material-icons">file_download</i>
-                                            </a>
-                                        --%>
-                                        <a style="margin-bottom:0;" class="btn btn-fab btn-fab-xs btn-danger" title="<fmt:message key='label.delete'/>" href="#delete" onclick="submitSiteForm('deleteSites', '${site.name}'); return false;">
-                                            <i class="material-icons">delete</i>
+                                        <a style="margin-bottom:0;" class="btn btn-fab btn-fab-xs btn-default" href="#edit" title="${i18nExportStaging}" onclick="submitSiteForm('exportStagingSites', '${site.name}'); return false;">
+                                            <i class="material-icons">file_download</i>
                                         </a>
-                                    <%--</div>--%>
+                                    --%>
+                                    <a style="margin-bottom:0;" class="btn btn-fab btn-fab-xs btn-danger" title="<fmt:message key='label.delete'/>" href="#delete" onclick="submitSiteForm('deleteSites', '${site.name}'); return false;">
+                                        <i class="material-icons">delete</i>
+                                    </a>
                                 </td>
                             </tr>
                         </c:if>

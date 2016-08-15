@@ -35,8 +35,16 @@
   font-feature-settings: 'liga';
 }
 
+.material-icons-small {
+  font-size: 16px;
+}
+
 .btn-xs .material-icons {
   font-size: 10px;
+}
+
+.btn-sm .material-icons {
+  font-size: 16px;
 }
 
 .btn-fab-xs .material-icons {
