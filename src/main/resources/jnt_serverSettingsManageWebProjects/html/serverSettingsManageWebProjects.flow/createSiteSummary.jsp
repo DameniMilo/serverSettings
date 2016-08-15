@@ -101,8 +101,8 @@
                 <fmt:message key='label.previous'/>
             </button>
             <button class="btn btn-sm btn-primary pull-right" type="submit" name="_eventId_next" id="${currentNode.identifier}-next">
-                <fmt:message key='label.next'/>
-                <i class="material-icons">navigate_next</i>
+                <fmt:message key='label.save'/>
+                <i class="material-icons">save</i>
             </button>
         </div>
     </div>

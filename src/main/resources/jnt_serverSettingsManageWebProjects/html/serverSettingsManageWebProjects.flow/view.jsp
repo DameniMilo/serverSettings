@@ -191,7 +191,7 @@
                                                 <c:when test="${renderContext.settings.distantPublicationServerMode}">
                                                     <c:url var="editUrl" value="/cms/settings/default/${site.defaultLanguage}${site.path}.manageLanguages.html"/>
                                                     <a style="margin-bottom:0;" class="btn btn-fab btn-fab-xs btn-default" href="${editUrl}" title="<fmt:message key='serverSettings.manageWebProjects.exitToEdit'/>">
-                                                        <i class="material-icons">forward</i>
+                                                        <i class="material-icons">exit_to_app</i>
                                                     </a>
                                                 </c:when>
                                                 <c:otherwise>
@@ -199,7 +199,7 @@
                                                     <c:if test="${not jcr:isNodeType(editSite, 'jmix:remotelyPublished')}">
                                                         <c:url var="editUrl" value="/cms/edit/default/${site.defaultLanguage}${editSite.home.path}.html"/>
                                                         <a style="margin-bottom:0;" class="btn btn-fab btn-fab-xs btn-default" href="${editUrl}" title="<fmt:message key='serverSettings.manageWebProjects.exitToEdit'/>">
-                                                            <i class="material-icons">forward</i>
+                                                            <i class="material-icons">exit_to_app</i>
                                                         </a>
                                                     </c:if>
                                                 </c:otherwise>
