@@ -14,49 +14,61 @@
     </script>
 </template:addResources>
 
-<h2><fmt:message key="label.confirmContinue"/></h2>
-<div class="alert alert-error">
-    <fmt:message key="serverSettings.manageWebProjects.delete.warning"/>
+<div class="page-header">
+    <h2><fmt:message key="label.confirmContinue"/></h2>
 </div>
 
-<form action="${flowExecutionUrl}" method="post">
-    <table class="table table-bordered table-striped table-hover">
-        <thead>
-            <tr>
-                <th>
-                    <fmt:message key="label.name" />
-                </th>
-                <th>
-                    <fmt:message key="serverSettings.manageWebProjects.webProject.siteKey" />
-                </th>
-                <th>
-                    <fmt:message key="serverSettings.manageWebProjects.webProject.serverName" />
-                </th>
-                <th>
-                    <fmt:message key="serverSettings.manageWebProjects.webProject.templateSet" />
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <input name="_sites" type="hidden"/>
-            <c:forEach items="${webprojectHandler.sites}" var="site">
-                <tr>
-                    <td><strong>${fn:escapeXml(site.title)}</strong></td>
-                    <td>${fn:escapeXml(site.siteKey)}</td>
-                    <td>${fn:escapeXml(site.serverName)}</td>
-                    <td title="${fn:escapeXml(site.templatePackageName)}">${fn:escapeXml(site.templateFolder)}</td>
-                </tr>
-            </c:forEach>
-        </tbody>
-    </table>
-    <button class="btn btn-danger" type="submit" name="_eventId_deleteSitesConfirmed" id="${currentNode.identifier}-deleteSitesConfirmed">
-        <i class="icon-remove icon-white"></i>
-        &nbsp;<fmt:message key='label.delete' />
-    </button>
-    <button class="btn" type="submit" name="_eventId_cancel">
-        <i class="icon-ban-circle"></i>
-        &nbsp;<fmt:message key='label.cancel' />
-    </button>
-</form>
+<div class="row">
+    <div class="col-md-offset-2 col-md-8">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <p class="text-danger">
+                    <fmt:message key="serverSettings.manageWebProjects.delete.warning"/>
+                </p>
+
+                <form action="${flowExecutionUrl}" method="post">
+                    <table class="table table-bordered table-striped table-hover">
+                        <thead>
+                        <tr>
+                            <th>
+                                <fmt:message key="label.name" />
+                            </th>
+                            <th>
+                                <fmt:message key="serverSettings.manageWebProjects.webProject.siteKey" />
+                            </th>
+                            <th>
+                                <fmt:message key="serverSettings.manageWebProjects.webProject.serverName" />
+                            </th>
+                            <th>
+                                <fmt:message key="serverSettings.manageWebProjects.webProject.templateSet" />
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <input name="_sites" type="hidden"/>
+                        <c:forEach items="${webprojectHandler.sites}" var="site">
+                            <tr>
+                                <td><strong>${fn:escapeXml(site.title)}</strong></td>
+                                <td>${fn:escapeXml(site.siteKey)}</td>
+                                <td>${fn:escapeXml(site.serverName)}</td>
+                                <td title="${fn:escapeXml(site.templatePackageName)}">${fn:escapeXml(site.templateFolder)}</td>
+                            </tr>
+                        </c:forEach>
+                        </tbody>
+                    </table>
+                    <button class="btn btn-sm btn-default" type="submit" name="_eventId_cancel">
+                        <i class="material-icons">cancel</i>
+                        <fmt:message key='label.cancel' />
+                    </button>
+                    <button class="btn btn-sm btn-danger pull-right" type="submit" name="_eventId_deleteSitesConfirmed" id="${currentNode.identifier}-deleteSitesConfirmed">
+                        <i class="material-icons">delete_forever</i>
+                        <fmt:message key='label.delete' />
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 
