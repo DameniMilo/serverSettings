@@ -115,14 +115,14 @@
                 <fmt:message key="serverSettings.manageWebProjects.add"/>
             </a>
             <c:if test="${exportAllowed}">
-            <a href="#export" id="exportSites" class="btn btn-default btn-sm sitesAction-hide">
-                <i class="material-icons">file_download</i>
-                <fmt:message key="label.export"/>
-            </a>
-            <a href="#exportStaging" id="exportStagingSites" class="btn btn-default btn-sm sitesAction-hide">
-                <i class="material-icons">file_download</i>
-                <fmt:message key="label.export"/> (<fmt:message key="label.stagingContent"/>)
-            </a>
+                <a href="#export" id="exportSites" class="btn btn-default btn-sm sitesAction-hide">
+                    <i class="material-icons">file_download</i>
+                    <fmt:message key="label.export"/>
+                </a>
+                <a href="#exportStaging" id="exportStagingSites" class="btn btn-default btn-sm sitesAction-hide">
+                    <i class="material-icons">file_download</i>
+                    <fmt:message key="label.export"/> (<fmt:message key="label.stagingContent"/>)
+                </a>
             </c:if>
             <a href="#delete" id="deleteSites" class="btn btn-danger btn-sm sitesAction">
                 <i class="material-icons">delete</i>
@@ -317,12 +317,6 @@
                             <span class="input-group-addon"><i class="material-icons">touch_app</i></span>
                             <label class="control-label"><fmt:message key="serverSettings.manageWebProjects.multipleimport.fileselect"/></label>
                             <input class="form-control" type="text" readonly>
-                            <span class="input-group-btn">
-                                <button class="btn btn-sm btn-primary" type="submit" name="_eventId_import" onclick="">
-                                    <i class="material-icons">file_upload</i>
-                                    <fmt:message key='serverSettings.manageWebProjects.fileImport'/>
-                                </button>
-                            </span>
                         </div>
                         <span class="material-input"></span>
                     </div>
