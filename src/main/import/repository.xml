@@ -340,6 +340,7 @@
                                    j:icon="/modules/serverSettings/templates/files/serveradmin/users_x0020_and_x0020_roles/admin_x0020_properties/superadmin_properties.png"
                                    j:requiredPermissionNames="adminRootUser"
                                    j:titleKey="serverSettings.adminProperties"
+                                   j:view="serverSettingsBootstrap3GoogleMaterialStyle"
                                    jcr:mixinTypes="jmix:rbTitle"
                                    jcr:primaryType="jnt:contentTemplate">
                                 <pagecontent jcr:primaryType="jnt:contentList">
