@@ -32,114 +32,103 @@
     </script>
 </template:addResources>
 
-<h2><fmt:message key="serverSettings.manageWebProjects.editSite"/></h2>
+<div class="page-header">
+    <h2><fmt:message key="serverSettings.manageWebProjects.editSite"/></h2>
+</div>
+
 
 <c:if test="${!empty flowRequestContext.messageContext.allMessages}">
-            <c:forEach var="error" items="${flowRequestContext.messageContext.allMessages}">
-                <div class="alert alert-error">
-                    <button type="button" class="close" data-dismiss="alert">&times;</button>
-                        ${fn:escapeXml(error.text)}
-                </div>
-            </c:forEach>
+    <c:forEach var="error" items="${flowRequestContext.messageContext.allMessages}">
+        <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                ${fn:escapeXml(error.text)}
+        </div>
+    </c:forEach>
 </c:if>
-<div class="box-1">
-    <form id="${currentNode.identifier}-updateSiteForm" action="${flowExecutionUrl}" method="POST">
-        <fieldset>
 
-            <div class="container-fluid">
-                <div class="row-fluid">
-                    <div class="span12">
-                        <h3><fmt:message key="serverSettings.manageWebProjects.webProject.siteKey"/>: ${fn:escapeXml(siteBean.siteKey)}</h3>
-                    </div>
-                </div>
+<div class="row">
+    <div class="col-md-offset-2 col-md-8">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <fmt:message key="serverSettings.manageWebProjects.webProject.siteKey"/>: ${fn:escapeXml(siteBean.siteKey)}
             </div>
-            <div class="container-fluid">
-                <div class="row-fluid">
-                    <div class="span4">
-                        <label for="title"><fmt:message key="label.name"/><span class="text-error"><strong>*</strong></span>:</label>
-                        <input class="span12" type="text" id="title" name="title" value="${fn:escapeXml(siteBean.title)}"/>
-                    </div>
-                    <div class="span4">
-                        <label for="serverName"><fmt:message key="serverSettings.manageWebProjects.webProject.serverName"/><span class="text-error"><strong>*</strong></span>:</label>
-                        <input class="span12" type="text" id="serverName" name="serverName" value="${fn:escapeXml(siteBean.serverName)}"/>
-                    </div>
-                </div>
-            </div>
+            <form id="${currentNode.identifier}-updateSiteForm" action="${flowExecutionUrl}" method="POST">
+                <div class="panel-body">
 
-            <div class="container-fluid">
-                <div class="row-fluid">
-                    <div class="span12">
-                        <p><fmt:message key="serverSettings.manageWebProjects.webProject.templateSet"/>: ${fn:escapeXml(siteBean.templatePackageName)}&nbsp;(${fn:escapeXml(siteBean.templateFolder)})</p>
+                    <div class="form-group form-group-sm label-floating">
+                        <label class="control-label" for="title">
+                            <fmt:message key="label.name"/><strong class="text-danger">*</strong>
+                        </label>
+                        <input class="form-control" type="text" id="title" name="title" value="${fn:escapeXml(siteBean.title)}"/>
+                    </div>
 
-                        <p><fmt:message key="label.modules"/>:</p>
+                    <div class="form-group form-group-sm label-floating">
+                        <label class="control-label" for="serverName">
+                            <fmt:message key="serverSettings.manageWebProjects.webProject.serverName"/><strong class="text-danger">*</strong>
+                        </label>
+                        <input class="form-control" type="text" id="serverName" name="serverName" value="${fn:escapeXml(siteBean.serverName)}"/>
+                    </div>
+
+                    <div class="form-group form-group-sm label-floating">
+                        <label>
+                            <fmt:message key="serverSettings.manageWebProjects.webProject.templateSet"/>
+                        </label>
+                        <input class="form-control" type="text" value="${fn:escapeXml(siteBean.templatePackageName)}&nbsp;(${fn:escapeXml(siteBean.templateFolder)})" disabled />
+                    </div>
+
+                    <div class="form-group form-group-sm label-floating">
+                        <label>
+                            <fmt:message key="label.modules"/>
+                        </label>
                         <p style="line-height: 2em">
                             <c:forEach items="${siteBean.modulePackages}" var="module" varStatus="loopStatus">
-                                <span class="badge badge-info">${module.name}</span>
+                                <span class="label label-info">${module.name}</span>
                             </c:forEach>
                         </p>
                     </div>
-                </div>
-            </div>
 
-            <div class="container-fluid">
-                <div class="row-fluid">
-                    <div class="span12">
+                    <div class="form-group form-group-sm">
+                        <div class="checkbox">
+                            <label for="defaultSite">
+                                <c:if test="${numberOfSites > 1}">
+                                    <input class="input-sm" type="checkbox" name="defaultSite" id="defaultSite"
+                                           <c:if test="${siteBean.defaultSite}">checked="checked"</c:if> />
+                                    <fmt:message key="serverSettings.manageWebProjects.webProject.defaultSite"/>
+                                </c:if>
+                                <c:if test="${numberOfSites <= 1}">
+                                    <input class="input-sm" type="checkbox" name="defaultSite" id="defaultSite" disabled="disabled" checked="checked"/>
+                                    <fmt:message key="serverSettings.manageWebProjects.webProject.isDefault"/>
+                                </c:if>
+                            </label>
+                        </div>
+                        <input type="hidden" name="_defaultSite"/>
+                    </div>
 
-                        <label for="defaultSite">
-                            <c:if test="${numberOfSites > 1}">
-                                <input type="checkbox" name="defaultSite" id="defaultSite"
-                                       <c:if test="${siteBean.defaultSite}">checked="checked"</c:if> /> <fmt:message key="serverSettings.manageWebProjects.webProject.defaultSite"/>
-                            </c:if>
-                            <c:if test="${numberOfSites <= 1}">
-                                <input type="checkbox" name="defaultSite" id="defaultSite" disabled="disabled" checked="checked"/> <fmt:message
-                                    key="serverSettings.manageWebProjects.webProject.isDefault"/>
-                            </c:if>
+                    <div class="form-group form-group-sm label-floating">
+                        <label class="control-label" for="description">
+                            <fmt:message key="label.description"/>
                         </label>
+                        <textarea class="form-control" id="description" name="description">${fn:escapeXml(siteBean.description)}</textarea>
+                    </div>
 
+                    <input type="hidden" id="${currentNode.identifier}-eventId" name="_eventId" value="next" />
 
-                        <%--<label for="defaultSite"><fmt:message key="serverSettings.manageWebProjects.webProject.defaultSite"/>:</label>
-                        <c:choose>
-                            <c:when test="${siteBean.defaultSite}">
-                                <p><fmt:message key="serverSettings.manageWebProjects.webProject.isDefault"/></p>
-                                <input type="hidden" name="defaultSite" value="true"/>
-                            </c:when>
-                            <c:otherwise>
-                                <input style="margin-bottom:15px;" type="checkbox" name="defaultSite" id="defaultSite" ${siteBean.defaultSite ? 'checked="checked"' : ''}/>
-                            </c:otherwise>
-                        </c:choose>--%>
+                    <div class="form-group form-group-sm">
+                        <button class="btn btn-sm btn-danger" type="submit" id="${currentNode.identifier}-cancel">
+                            <i class="material-icons">cancel</i>
+                            <fmt:message key='label.cancel' />
+                        </button>
+                        <button class="btn btn-sm btn-default" type="submit" id="${currentNode.identifier}-editModules">
+                            <i class="material-icons">list</i>
+                            &nbsp;<fmt:message key='serverSettings.manageWebProjects.webProject.selectModules' />
+                        </button>
+                        <button class="btn btn-sm btn-primary pull-right" type="submit" id="${currentNode.identifier}-next">
+                            <fmt:message key='label.save'/>
+                            <i class="material-icons">save</i>
+                        </button>
                     </div>
                 </div>
-            </div>
-
-            <div class="container-fluid">
-                <div class="row-fluid">
-                    <div class="span8">
-                        <label for="description"><fmt:message key="label.description"/>:</label>
-                        <textarea class="span12" id="description" name="description">${fn:escapeXml(siteBean.description)}</textarea>
-                    </div>
-                </div>
-            </div>
-
-            <input type="hidden" id="${currentNode.identifier}-eventId" name="_eventId" value="next" />
-        </fieldset>
-        <div class="container-fluid">
-            <div class="row-fluid">
-                <div class="span12">
-                    <button class="btn btn-primary" type="submit" id="${currentNode.identifier}-next">
-                        <i class="icon-ok icon-white"></i>
-                        &nbsp;<fmt:message key='label.save'/>
-                    </button>
-                    <button class="btn" type="submit" id="${currentNode.identifier}-editModules">
-                        <i class="icon-th-large"></i>
-                        &nbsp;<fmt:message key='serverSettings.manageWebProjects.webProject.selectModules' />
-                    </button>
-                    <button class="btn" type="submit" id="${currentNode.identifier}-cancel">
-                        <i class="icon-ban-circle"></i>
-                        &nbsp;<fmt:message key='label.cancel' />
-                    </button>
-                </div>
-            </div>
+            </form>
         </div>
-
-    </form>
+    </div>
 </div>
