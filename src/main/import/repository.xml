@@ -426,6 +426,7 @@
                                  j:icon="/modules/serverSettings/templates/files/serveradmin/system_x0020_health/report_x0020_issue/report_issue.png"
                                  j:requiredPermissionNames="adminIssueTracking"
                                  j:titleKey="serverSettings.reportAnIssue"
+                                 j:view="serverSettingsBootstrap3GoogleMaterialStyle"
                                  jcr:mixinTypes="jmix:rbTitle"
                                  jcr:primaryType="jnt:contentTemplate">
                                 <pagecontent jcr:primaryType="jnt:contentList">
