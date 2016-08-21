@@ -356,6 +356,7 @@
                                   j:icon="/modules/serverSettings/templates/files/serveradmin/users_x0020_and_x0020_roles/password_x0020_policy/password_policy.png"
                                   j:requiredPermissionNames="adminPasswordPolicy"
                                   j:titleKey="serverSettings.password.policies"
+                                  j:view="serverSettingsBootstrap3GoogleMaterialStyle"
                                   jcr:mixinTypes="jmix:rbTitle"
                                   jcr:primaryType="jnt:contentTemplate">
                                 <pagecontent jcr:primaryType="jnt:contentList">
