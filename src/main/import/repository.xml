@@ -298,6 +298,7 @@
                                   j:icon="/modules/serverSettings/templates/files/serveradmin/system_x0020_components/portlets/portlets.png"
                                   j:requiredPermissionNames="adminPortlets"
                                   j:titleKey="serverSettings.managePortlets"
+                                  j:view="serverSettingsBootstrap3GoogleMaterialStyle"
                                   jcr:mixinTypes="jmix:rbTitle"
                                   jcr:primaryType="jnt:contentTemplate">
                                 <pagecontent jcr:primaryType="jnt:contentList">
