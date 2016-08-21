@@ -259,6 +259,7 @@
                               j:icon="/modules/serverSettings/templates/files/serveradmin/configurations/db_x0020_settings/db_settings.png"
                               j:requiredPermissionNames="adminDBSettings"
                               j:titleKey="serverSettings.dbSettings"
+                              j:view="serverSettingsBootstrap3GoogleMaterialStyle"
                               jcr:mixinTypes="jmix:rbTitle"
                               jcr:primaryType="jnt:contentTemplate">
                                 <pagecontent jcr:primaryType="jnt:contentList">
