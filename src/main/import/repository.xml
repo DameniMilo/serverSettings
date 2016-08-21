@@ -411,6 +411,7 @@
                                 j:icon="/modules/serverSettings/templates/files/serveradmin/system_x0020_health/memory/memory.png"
                                 j:requiredPermissionNames="adminManageMemory"
                                 j:titleKey="serverSettings.manageMemory"
+                                j:view="serverSettingsBootstrap3GoogleMaterialStyle"
                                 jcr:mixinTypes="jmix:rbTitle"
                                 jcr:primaryType="jnt:contentTemplate">
                                 <pagecontent jcr:primaryType="jnt:contentList">

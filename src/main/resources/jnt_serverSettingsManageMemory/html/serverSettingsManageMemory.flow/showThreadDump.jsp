@@ -14,22 +14,23 @@
 <%--@elvariable id="url" type="org.jahia.services.render.URLGenerator"--%>
 <%--@elvariable id="url" type="org.jahia.services.render.URLGenerator"--%>
 <%--@elvariable id="memoryInfo" type="org.jahia.modules.serversettings.memoryThread.MemoryThreadInformationManagement"--%>
-<template:addResources type="javascript" resources="jquery.min.js,jquery-ui.min.js"/>
-<template:addResources type="css" resources="jquery-ui.smoothness.css,jquery-ui.smoothness-jahia.css"/>
-<c:if test="${not empty threadDumpResult}">
-<div>
-    <form action="${flowExecutionUrl}" method="POST" style="display: inline;">
-        <button class="btn" type="submit" name="_eventId_back">
-            <i class="icon-arrow-left"></i>
-            &nbsp;
-            <fmt:message key='serverSettings.manageMemory.memory.back'/>
-        </button>
-    </form>
+<template:addResources type="javascript" resources="jquery.min.js"/>
 
-    <pre>
-        <code class="java">
-                ${fn:escapeXml(threadDumpResult)}
-        </code>
-    </pre>
-</div>
+<c:if test="${not empty threadDumpResult}">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <form action="${flowExecutionUrl}" method="POST">
+                <button class="btn btn-default" type="submit" name="_eventId_back">
+                    <i class="material-icons">arrow_back</i>
+                    <fmt:message key='serverSettings.manageMemory.memory.back'/>
+                </button>
+            </form>
+
+            <pre>
+                <code class="java">
+                    ${fn:escapeXml(threadDumpResult)}
+                </code>
+            </pre>
+        </div>
+    </div>
 </c:if>
