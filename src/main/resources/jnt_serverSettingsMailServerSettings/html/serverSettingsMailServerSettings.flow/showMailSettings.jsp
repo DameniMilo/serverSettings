@@ -15,8 +15,8 @@
 <%--@elvariable id="url" type="org.jahia.services.render.URLGenerator"--%>
 <%--@elvariable id="mailSettings" type="org.jahia.services.mail.MailSettings"--%>
 <%--@elvariable id="flowRequestContext" type="org.springframework.webflow.execution.RequestContext"--%>
-<template:addResources type="javascript" resources="jquery.min.js,jquery-ui.min.js,admin-bootstrap.js,bootstrapSwitch.js"/>
-<template:addResources type="css" resources="jquery-ui.smoothness.css,jquery-ui.smoothness-jahia.css,bootstrapSwitch.css"/>
+<template:addResources type="javascript" resources="jquery.min.js"/>
+<%--<template:addResources type="css" resources="jquery-ui.smoothness.css,jquery-ui.smoothness-jahia.css"/>--%>
 
 <script type="text/javascript">
     <!--
@@ -73,84 +73,100 @@
     }//-->
 </script>
 
-
-<h2>
-    <fmt:message key="serverSettings.mailServerSettings"/>
-</h2>
-<p>
-    <c:forEach items="${flowRequestContext.messageContext.allMessages}" var="message">
-        <c:if test="${message.severity eq 'ERROR'}">
-            <div class="alert alert-error">
-                <button type="button" class="close" data-dismiss="alert">&times;</button>
-                    ${message.text}
-            </div>
-        </c:if>
-    </c:forEach>
-</p>
-<c:if test="${settingsUpdated}">
-<div class="alert alert-success">
-    <button type="button" class="close" data-dismiss="alert">&times;</button>
-    <fmt:message key="label.changeSaved"/>
+<div class="page-header">
+    <h2>
+        <fmt:message key="serverSettings.mailServerSettings"/>
+    </h2>
 </div>
+
+<c:forEach items="${flowRequestContext.messageContext.allMessages}" var="message">
+    <c:if test="${message.severity eq 'ERROR'}">
+        <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                ${message.text}
+        </div>
+    </c:if>
+</c:forEach>
+
+<c:if test="${settingsUpdated}">
+    <div class="alert alert-success">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <fmt:message key="label.changeSaved"/>
+    </div>
 </c:if>
-<div class="box-1">
-    <form class="form-horizontal" name="jahiaAdmin" action='${flowExecutionUrl}' method="post">
 
-        <div class="control-group">
-            <div class="controls">
-                <label for="serviceActivated">
-                    <div class="switch" data-on="success" data-off="danger">
-                        <input type="checkbox" name="serviceActivated" id="serviceActivated"<c:if test='${mailSettings.serviceActivated}'> checked="checked"</c:if>/>
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <form class="form-horizontal" name="jahiaAdmin" action='${flowExecutionUrl}' method="post">
+
+                    <div class="form-group form-group-sm">
+                        <div class="togglebutton">
+                            <label for="serviceActivated">
+                                <input type="checkbox" name="serviceActivated" id="serviceActivated"<c:if test='${mailSettings.serviceActivated}'> checked="checked"</c:if>/>
+                                <fmt:message key="serverSettings.mailServerSettings.serviceEnabled"/>
+                            </label>
+                        </div>
+                        <input type="hidden" name="_serviceActivated"/>
                     </div>
-                    <input type="hidden" name="_serviceActivated"/>
-                    &nbsp;<fmt:message key="serverSettings.mailServerSettings.serviceEnabled"/>
-                </label>
-            </div>
-        </div>
 
-        <div class="control-group">
-            <label class="control-label"><fmt:message key="serverSettings.mailServerSettings.address"/> &nbsp;:</label>
-            <div class="controls ">
-                <input type="text" name="uri" size="70" maxlength="250" value="<c:out value='${mailSettings.uri}'/>"/>&nbsp;
-                <a class="btn btn-info" href="http://jira.jahia.org/browse/JKB-20" target="_blank" style="cursor: pointer;"><i class="icon-info-sign icon-white"></i></a>
-            </div>
-        </div>
+                    <div class="form-group form-group-sm label-floating">
+                        <div class="input-group">
+                            <label class="control-label">
+                                <fmt:message key="serverSettings.mailServerSettings.address"/>
+                            </label>
+                            <input class="form-control" type="text" name="uri" size="70" maxlength="250" value="<c:out value='${mailSettings.uri}'/>"/>
+                            <span class="input-group-btn">
+                                <a class="btn btn-fab btn-fab-xs btn-info" href="http://jira.jahia.org/browse/JKB-20" target="_blank" style="cursor: pointer;">
+                                    <i class="material-icons">info</i>
+                                </a>
+                            </span>
+                        </div>
+                    </div>
 
-        <div class="control-group">
-            <label class="control-label"><fmt:message key="serverSettings.mailServerSettings.administrator"/>&nbsp;:</label>
-            <div class="controls">
-                <input type="text" name="to" size="64" maxlength="250" value="<c:out value='${mailSettings.to}'/>">
-            </div>
-        </div>
+                    <div class="form-group form-group-sm label-floating">
+                        <label class="control-label">
+                            <fmt:message key="serverSettings.mailServerSettings.administrator"/>
+                        </label>
+                        <input class="form-control" type="text" name="to" size="64" maxlength="250" value="<c:out value='${mailSettings.to}'/>">
+                    </div>
 
-        <div class="control-group">
-            <label class="control-label"><fmt:message key="serverSettings.mailServerSettings.from"/>&nbsp;:</label>
-            <div class="controls">
-                <input type="text" name="from" size="64" maxlength="250" value="<c:out value='${mailSettings.from}'/>">
-            </div>
-        </div>
+                    <div class="form-group form-group-sm label-floating">
+                        <label class="control-label">
+                            <fmt:message key="serverSettings.mailServerSettings.from"/>
+                        </label>
+                        <input class="form-control" type="text" name="from" size="64" maxlength="250" value="<c:out value='${mailSettings.from}'/>">
+                    </div>
 
-        <div class="control-group">
-            <label class="control-label"><fmt:message key="serverSettings.mailServerSettings.eventNotificationLevel"/>&nbsp;:</label>
-            <div class="controls">
-                <select name="notificationLevel">
-                    <option value="Disabled" ${mailSettings.notificationLevel == 'Disabled' ? 'selected="selected"' : ''}>
-                        <fmt:message key="serverSettings.mailServerSettings.eventNotificationLevel.disabled"/></option>
-                    <option value="Standard" ${mailSettings.notificationLevel == 'Standard' ? 'selected="selected"' : ''}>
-                        <fmt:message key="serverSettings.mailServerSettings.eventNotificationLevel.standard"/></option>
-                    <option value="Wary" ${mailSettings.notificationLevel == 'Wary' ? 'selected="selected"' : ''}>
-                        <fmt:message key="serverSettings.mailServerSettings.eventNotificationLevel.wary"/></option>
-                    <option value="Paranoid" ${mailSettings.notificationLevel == 'Paranoid' ? 'selected="selected"' : ''}>
-                        <fmt:message key="serverSettings.mailServerSettings.eventNotificationLevel.paranoid"/></option>
-                </select>
-            </div>
-        </div>
+                    <div class="form-group form-group-sm label-floating">
+                        <label class="control-label">
+                            <fmt:message key="serverSettings.mailServerSettings.eventNotificationLevel"/>
+                        </label>
+                        <select class="form-control" name="notificationLevel">
+                            <option value="Disabled" ${mailSettings.notificationLevel == 'Disabled' ? 'selected="selected"' : ''}>
+                                <fmt:message key="serverSettings.mailServerSettings.eventNotificationLevel.disabled"/></option>
+                            <option value="Standard" ${mailSettings.notificationLevel == 'Standard' ? 'selected="selected"' : ''}>
+                                <fmt:message key="serverSettings.mailServerSettings.eventNotificationLevel.standard"/></option>
+                            <option value="Wary" ${mailSettings.notificationLevel == 'Wary' ? 'selected="selected"' : ''}>
+                                <fmt:message key="serverSettings.mailServerSettings.eventNotificationLevel.wary"/></option>
+                            <option value="Paranoid" ${mailSettings.notificationLevel == 'Paranoid' ? 'selected="selected"' : ''}>
+                                <fmt:message key="serverSettings.mailServerSettings.eventNotificationLevel.paranoid"/></option>
+                        </select>
+                    </div>
 
-        <div class="control-group">
-            <div class="controls">
-                <button class="btn btn-primary" type="submit" name="_eventId_submitMailSettings"><i class="icon-ok icon-white"></i>&nbsp;<fmt:message key="label.save"/></button>
-                <button class="btn" type="button" onclick="testSettings(); return false;"><i class="icon-thumbs-up"></i>&nbsp;<fmt:message key="serverSettings.mailServerSettings.testSettings"/></button>
+                    <div class="form-group form-group-sm">
+                        <button class="btn btn-sm btn-primary pull-right" type="submit" name="_eventId_submitMailSettings">
+                            <i class="material-icons">save</i>
+                            <fmt:message key="label.save"/>
+                        </button>
+                        <button class="btn btn-sm btn-default pull-right" type="button" onclick="testSettings(); return false;">
+                            <i class="material-icons">thumb_up</i>
+                            <fmt:message key="serverSettings.mailServerSettings.testSettings"/>
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
-    </form>
+    </div>
 </div>
