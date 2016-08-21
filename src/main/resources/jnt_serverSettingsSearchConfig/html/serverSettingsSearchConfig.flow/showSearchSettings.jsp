@@ -18,43 +18,56 @@
 <template:addResources type="javascript" resources="jquery.min.js,jquery-ui.min.js,admin-bootstrap.js,bootstrapSwitch.js"/>
 <template:addResources type="css" resources="jquery-ui.smoothness.css,jquery-ui.smoothness-jahia.css,bootstrapSwitch.css"/>
 
+<div class="page-header">
+    <h2>
+        <fmt:message key="serverSettings.searchServerSettings"/>
+    </h2>
+</div>
 
-<h2>
-    <fmt:message key="serverSettings.searchServerSettings"/>
-</h2>
-<p>
 <c:forEach items="${flowRequestContext.messageContext.allMessages}" var="message">
     <c:if test="${message.severity eq 'ERROR'}">
-        <div class="alert alert-error">
+        <div class="alert alert-danger">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
-                ${message.text}
+            ${message.text}
         </div>
     </c:if>
 </c:forEach>
-</p>
+
 <c:if test="${settingsUpdated}">
     <div class="alert alert-success">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
         <fmt:message key="label.changeSaved"/>
     </div>
 </c:if>
-<div class="box-1">
-    <form class="form-horizontal" name="jahiaAdmin" action='${flowExecutionUrl}' method="post">
-        <div class="control-group">
-            <label class="control-label" for="currentProvider"><fmt:message key="serverSettings.searchServerSettings.provider"/>&nbsp;:</label>
-            <div class="controls">
-                <select name="currentProvider" id="currentProvider">
-                    <c:forEach items="${availableProviders}" var="availableProvider">
-                        <option value="${fn:escapeXml(availableProvider)}" <c:if test="${availableProvider eq searchSettings.currentProvider}">selected="selected"</c:if> >${fn:escapeXml(availableProvider)}</option>
-                    </c:forEach>
-                </select>
-            </div>
-        </div>
 
-        <div class="control-group">
-            <div class="controls">
-                <button class="btn btn-primary" type="submit" name="_eventId_submit"><i class="icon-ok icon-white"></i>&nbsp;<fmt:message key="label.save"/></button>
+<div class="row">
+    <div class="col-md-offset-2 col-md-8">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <form class="form-horizontal" name="jahiaAdmin" action='${flowExecutionUrl}' method="post">
+                    <div class="col-md-12">
+                        <div class="form-group label-floating">
+                            <label class="control-label" for="currentProvider">
+                                <fmt:message key="serverSettings.searchServerSettings.provider"/>&nbsp;:</label>
+                            <select class="form-control" name="currentProvider" id="currentProvider">
+                                <c:forEach items="${availableProviders}" var="availableProvider">
+                                    <option value="${fn:escapeXml(availableProvider)}" <c:if test="${availableProvider eq searchSettings.currentProvider}">selected="selected"</c:if> >${fn:escapeXml(availableProvider)}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <button class="btn btn-primary pull-right" type="submit" name="_eventId_submit">
+                                <i class="material-icons">save</i>
+                                <fmt:message key="label.save"/>
+                            </button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
-    </form>
+    </div>
 </div>
+
