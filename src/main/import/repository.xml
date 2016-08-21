@@ -396,6 +396,7 @@
                                    j:icon="/modules/serverSettings/templates/files/serveradmin/system_x0020_health/cache_x0020_management/cacheManagement.png"
                                    j:requiredPermissionNames="adminCache"
                                    j:titleKey="serverSettings.cacheManagement"
+                                   j:view="serverSettingsBootstrap3GoogleMaterialStyle"
                                    jcr:mixinTypes="jmix:rbTitle"
                                    jcr:primaryType="jnt:contentTemplate">
                                 <pagecontent jcr:primaryType="jnt:contentList">
