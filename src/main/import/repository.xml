@@ -388,6 +388,7 @@
                                j:icon="/modules/serverSettings/templates/files/serveradmin/system_x0020_health/system_x0020_info/system_info.png"
                                j:requiredPermissionNames="adminSystemInfos"
                                j:titleKey="serverSettings.systemInfos"
+                               j:view="serverSettingsBootstrap3GoogleMaterialStyle"
                                jcr:mixinTypes="jmix:rbTitle"
                                jcr:primaryType="jnt:contentTemplate">
                                 <pagecontent jcr:primaryType="jnt:contentList">
