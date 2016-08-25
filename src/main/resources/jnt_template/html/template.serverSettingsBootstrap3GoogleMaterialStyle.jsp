@@ -30,6 +30,8 @@
     <template:addResources type="css" resources="roboto-fonts.css"/>
     <template:addResources type="css" resources="material-icons.css"/>
     <template:addResources type="css" resources="serverSettings.css"/>
+    <template:addResources type="css" resources="snackbar.css"/>
+    <template:addResources type="css" resources="snackbar-material.css"/>
     <template:addResources>
         <script>
             $.material.init();
@@ -56,6 +58,7 @@
 <template:addResources type="javascript" resources="bootstrap3.serverSettings.min.js"/>
 <template:addResources type="javascript" resources="material.js"/>
 <template:addResources type="javascript" resources="ripples.js"/>
+<template:addResources type="javascript" resources="snackbar.min.js"/>
 <template:theme/>
 
 </body>
