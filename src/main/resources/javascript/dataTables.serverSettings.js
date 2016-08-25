@@ -1,19 +1,30 @@
 var dataTablesServerSettings = {
-    init: function($identifier) {
-        $identifier.dataTable({
+    init: function(tableID, length, sort, fnDrawCallback) {
+        this.tableID = tableID;
+        
+        var options = {
             "sDom": "<'row'<'col-md-6'l><'col-md-6 text-right'f>r>t<'row'<'col-md-6 text-muted'i><'col-md-6 text-right'p>>",
-            "iDisplayLength": 10,
+            "iDisplayLength": length,
             "sPaginationType": "bootstrap",
-            "aaSorting": [] //this option disable sort by default, the user steal can use column names to sort the table
-        });
+            "aaSorting": sort //this option disable sort by default, the user steal can use column names to sort the table
+        };
+
+        if (fnDrawCallback != null) {
+            options.fnDrawCallback = fnDrawCallback
+        }
+
+        $('#' + this.tableID).dataTable(options);
 
         this.bootstrap3LookAndFeel();
     },
     bootstrap3LookAndFeel: function() {
-        $('select[name=sitesTable_length]').addClass('form-control');
-        $('#sitesTable_filter input').addClass('form-control');
-        $('#sitesTable_length').addClass('form-group-sm');
-        $('#sitesTable_filter').addClass('form-group-sm');
+        // fix select and search input
+        $('select[name=' + this.tableID + '_length]').addClass('form-control');
+        $('#' + this.tableID + '_filter input').addClass('form-control');
+        $('#' + this.tableID + '_length').addClass('form-group form-group-sm');
+        $('#' + this.tableID + '_filter').addClass('form-group form-group-sm');
+        
+        // fix pagination
         $('.dataTables_paginate.paging_bootstrap').removeClass('pagination');
         $('.dataTables_paginate.paging_bootstrap ul').addClass('pagination pagination-sm dataTables-pagination');
         $('.dataTables_paginate.paging_bootstrap li:first a').html('&laquo;');
