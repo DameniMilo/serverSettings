@@ -18,6 +18,7 @@
 <c:set var="defaultPrepackagedSite" value="acmespaceelektra.zip"/>
 <template:addResources type="javascript" resources="jquery.min.js,workInProgress.js"/>
 <template:addResources type="javascript" resources="datatables/jquery.dataTables.js,i18n/jquery.dataTables-${currentResource.locale}.js,datatables/dataTables.bootstrap-ext.js,dataTables.serverSettings.js"/>
+<template:addResources type="css" resources="datatables/css/bootstrap-theme.css"/>
 <jsp:useBean id="nowDate" class="java.util.Date" />
 <fmt:formatDate value="${nowDate}" pattern="yyyy-MM-dd-HH-mm" var="now"/>
 <fmt:message key="label.workInProgressTitle" var="i18nWaiting"/><c:set var="i18nWaiting" value="${functions:escapeJavaScript(i18nWaiting)}"/>
@@ -44,7 +45,10 @@
     	$("a.sitesAction").click(function () {
     		var act=$(this).attr('id');
     		if (act != 'createSite' && $("#sitesForm input:checkbox[name='selectedSites']:checked").length == 0) {
-        		alert("${i18nNoSiteSelected}");
+                $.snackbar({
+                    content: "${i18nNoSiteSelected}",
+                    style: "error"
+                });
     			return false;
     		}
     		submitSiteForm(act);
@@ -58,7 +62,10 @@
                 selectedSites.push($(this).val());
             });
             if(selectedSites.length==0) {
-                alert("${i18nNoSiteSelected}");
+                $.snackbar({
+                    content: "${i18nNoSiteSelected}",
+                    style: "error"
+                });
                 return false;
             }
             var name = selectedSites.length>1?"sites":selectedSites;
@@ -77,7 +84,10 @@
                 selectedSites.push($(this).val());
             });
             if(selectedSites.length==0) {
-                alert("${i18nNoSiteSelected}");
+                $.snackbar({
+                    content: "${i18nNoSiteSelected}",
+                    style: "error"
+                });
                 return false;
             }
             var name = selectedSites.length>1?"sites":selectedSites;
@@ -93,7 +103,7 @@
 </script>
 <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {
-        dataTablesServerSettings.init('sitesTable', 10, [], null);
+        dataTablesServerSettings.init('sitesTable', 10, [], null, null);
     });
 </script>
 
@@ -164,12 +174,10 @@
                         <c:if test="${site.name ne 'systemsite'}">
                             <tr>
                                 <td>
-                                    <div class="form-group">
-                                        <div class="checkbox">
-                                            <label>
-                                                <input name="selectedSites" type="checkbox" value="${site.name}"/>
-                                            </label>
-                                        </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input name="selectedSites" type="checkbox" value="${site.name}"/>
+                                        </label>
                                     </div>
                                 </td>
                                 <td>

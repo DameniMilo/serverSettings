@@ -35,12 +35,14 @@
                 <c:forEach items="${jahiaPasswordPolicy.rules}" var="rule" varStatus="rlzStatus">
                     <tr>
                         <td>
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" id="pwd-rule-${rlzStatus.index}" name="rules[<c:out value='${rlzStatus.index}'/>].active" value="true" ${rule.active ? 'checked="checked"' : ''}/>
-                                    <c:set var="i18nKey" value='serverSettings.passwordPolicies.rule.${rule.name}'/>
-                                    <fmt:message key='${i18nKey}'/>
-                                </label>
+                            <div class="form-group form-group-sm">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" id="pwd-rule-${rlzStatus.index}" name="rules[<c:out value='${rlzStatus.index}'/>].active" value="true" ${rule.active ? 'checked="checked"' : ''}/>
+                                        <c:set var="i18nKey" value='serverSettings.passwordPolicies.rule.${rule.name}'/>
+                                        <fmt:message key='${i18nKey}'/>
+                                    </label>
+                                </div>
                             </div>
                             <input type="hidden" name="_rules[<c:out value='${rlzStatus.index}'/>].active"/>
                         </td>

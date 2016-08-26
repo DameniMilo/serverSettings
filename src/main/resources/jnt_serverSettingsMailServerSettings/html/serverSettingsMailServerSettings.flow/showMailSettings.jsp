@@ -16,22 +16,29 @@
 <%--@elvariable id="mailSettings" type="org.jahia.services.mail.MailSettings"--%>
 <%--@elvariable id="flowRequestContext" type="org.springframework.webflow.execution.RequestContext"--%>
 <template:addResources type="javascript" resources="jquery.min.js"/>
-<%--<template:addResources type="css" resources="jquery-ui.smoothness.css,jquery-ui.smoothness-jahia.css"/>--%>
 
 <script type="text/javascript">
-    <!--
     function testSettings() {
         if (document.jahiaAdmin.uri.value.length == 0) {
         <fmt:message key="serverSettings.mailServerSettings.errors.server.mandatory" var="msg"/>
-            alert("${functions:escapeJavaScript(msg)}");
+            $.snackbar({
+                content: "${functions:escapeJavaScript(msg)}",
+                style: "error"
+            });
             document.jahiaAdmin.uri.focus();
         } else if (document.jahiaAdmin.to.value.length == 0) {
         <fmt:message key="serverSettings.mailServerSettings.errors.administrator.mandatory" var="msg"/>
-            alert("${functions:escapeJavaScript(msg)}");
+            $.snackbar({
+                content: "${functions:escapeJavaScript(msg)}",
+                style: "error"
+            });
             document.jahiaAdmin.to.focus();
         } else if (document.jahiaAdmin.from.value.length == 0) {
         <fmt:message key="serverSettings.mailServerSettings.errors.from.mandatory" var="msg"/>
-            alert("${functions:escapeJavaScript(msg)}");
+            $.snackbar({
+                content: "${functions:escapeJavaScript(msg)}",
+                style: "error"
+            });
             document.jahiaAdmin.from.focus();
         } else {
             if (typeof workInProgressOverlay != 'undefined') {
@@ -54,10 +61,15 @@
                     }
                     if ("success" == textStatus) {
                     <fmt:message key="serverSettings.mailServerSettings.testSettings.success" var="msg"/>
-                        alert("${functions:escapeJavaScript(msg)}");
+                        $.snackbar({
+                            content: "${functions:escapeJavaScript(msg)}"
+                        });
                     } else {
                     <fmt:message key="serverSettings.mailServerSettings.testSettings.failure" var="msg"/>
-                        alert("${functions:escapeJavaScript(msg)}");
+                        $.snackbar({
+                            content: "${functions:escapeJavaScript(msg)}",
+                            style: "error"
+                        });
                     }
                 },
                 error:function (xhr, textStatus, errorThrown) {
@@ -65,12 +77,14 @@
                         workInProgressOverlay.stop();
                     }
                     <fmt:message key="serverSettings.mailServerSettings.testSettings.failure" var="msg"/>
-                    alert("${functions:escapeJavaScript(msg)}" + "\n" + xhr.status + " " + xhr.statusText + "\n" +
-                          xhr.responseText);
+                    $.snackbar({
+                        content: "${functions:escapeJavaScript(msg)}" + "\n" + xhr.status + " " + xhr.statusText + "\n" + xhr.responseText,
+                        style: "error"
+                    });
                 }
             });
         }
-    }//-->
+    }
 </script>
 
 <div class="page-header">

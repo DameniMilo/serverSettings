@@ -18,12 +18,21 @@
     margin: 0;
 }
 
-td .form-group {
-    margin-top: 0;
+td .form-group.form-group-sm {
+    margin-top: 3px;
 }
 
 .btn.btn-fab.btn-fab-xs {
     height: 30px;
     min-width: 30px;
     width: 30px;
+}
+
+table .checkbox,
+table .radio {
+    margin: 0;
+}
+
+.radio label.radio-inline {
+    padding-left: 25px;
 }

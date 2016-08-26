@@ -1,5 +1,5 @@
 var dataTablesServerSettings = {
-    init: function(tableID, length, sort, fnDrawCallback) {
+    init: function(tableID, length, sort, bStateSave, fnDrawCallback) {
         this.tableID = tableID;
         
         var options = {
@@ -11,6 +11,10 @@ var dataTablesServerSettings = {
 
         if (fnDrawCallback != null) {
             options.fnDrawCallback = fnDrawCallback
+        }
+
+        if (bStateSave != null) {
+            options.bStateSave = bStateSave
         }
 
         $('#' + this.tableID).dataTable(options);
