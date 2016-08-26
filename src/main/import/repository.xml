@@ -331,6 +331,7 @@
                                j:icon="/modules/serverSettings/templates/files/serveradmin/users_x0020_and_x0020_roles/manage_x0020_users/manage_users.png"
                                j:requiredPermissionNames="adminUsers"
                                j:titleKey="siteSettings.manageUsers"
+                               j:view="serverSettingsBootstrap3GoogleMaterialStyle"
                                jcr:mixinTypes="jmix:rbTitle"
                                jcr:primaryType="jnt:contentTemplate">
                                 <pagecontent jcr:primaryType="jnt:contentList">
@@ -370,6 +371,7 @@
                                 j:priority="100"
                                 j:requiredPermissionNames="adminGroups"
                                 j:titleKey="siteSettings.label.manageGroups"
+                                j:view="serverSettingsBootstrap3GoogleMaterialStyle"
                                 jcr:mixinTypes="jmix:rbTitle"
                                 jcr:primaryType="jnt:contentTemplate">
                                 <pagecontent jcr:primaryType="jnt:contentList">
