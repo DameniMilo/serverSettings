@@ -216,7 +216,7 @@
                            j:icon="/modules/serverSettings/templates/files/serveradmin/aboutJahia.png"
                            j:requiredPermissionNames="administrationAccess"
                            j:titleKey="serverSettings.aboutJahia"
-                           j:view="serverSettingsBootstrap3GoogleMaterialStyle"
+                           j:view="settingsBootstrap3GoogleMaterialStyle"
                            jcr:mixinTypes="jmix:rbTitle"
                            jcr:primaryType="jnt:contentTemplate">
                             <pagecontent jcr:primaryType="jnt:contentList">
@@ -229,7 +229,7 @@
                                    j:icon="/modules/serverSettings/templates/files/serveradmin/web_x0020_projects/webprojects.png"
                                    j:requiredPermissionNames="adminVirtualSites"
                                    j:titleKey="serverSettings.manageWebProjects"
-                                   j:view="serverSettingsBootstrap3GoogleMaterialStyle"
+                                   j:view="settingsBootstrap3GoogleMaterialStyle"
                                    jcr:mixinTypes="jmix:rbTitle"
                                    jcr:primaryType="jnt:contentTemplate">
                             <pagecontent jcr:primaryType="jnt:contentList">
@@ -247,7 +247,7 @@
                                       j:icon="/modules/serverSettings/templates/files/serveradmin/configurations/mail_x0020_server/mail_preferences.png"
                                       j:requiredPermissionNames="adminEmailSettings"
                                       j:titleKey="serverSettings.mailServerSettings"
-                                      j:view="serverSettingsBootstrap3GoogleMaterialStyle"
+                                      j:view="settingsBootstrap3GoogleMaterialStyle"
                                       jcr:mixinTypes="jmix:rbTitle"
                                       jcr:primaryType="jnt:contentTemplate">
                                 <pagecontent jcr:primaryType="jnt:contentList">
@@ -260,7 +260,7 @@
                               j:icon="/modules/serverSettings/templates/files/serveradmin/configurations/db_x0020_settings/db_settings.png"
                               j:requiredPermissionNames="adminDBSettings"
                               j:titleKey="serverSettings.dbSettings"
-                              j:view="serverSettingsBootstrap3GoogleMaterialStyle"
+                              j:view="settingsBootstrap3GoogleMaterialStyle"
                               jcr:mixinTypes="jmix:rbTitle"
                               jcr:primaryType="jnt:contentTemplate">
                                 <pagecontent jcr:primaryType="jnt:contentList">
@@ -271,7 +271,7 @@
                                    j:defaultTemplate="false"
                                    j:hiddenTemplate="false"
                                    j:icon="/modules/serverSettings/templates/files/serveradmin/configurations/search_x0020_settings/recherche-16x16.png"
-                                   j:view="serverSettingsBootstrap3GoogleMaterialStyle"
+                                   j:view="settingsBootstrap3GoogleMaterialStyle"
                                    jcr:primaryType="jnt:contentTemplate">
                                 <j:translation_en jcr:language="en"
                                        jcr:mixinTypes="mix:title"
@@ -298,7 +298,7 @@
                                   j:icon="/modules/serverSettings/templates/files/serveradmin/system_x0020_components/portlets/portlets.png"
                                   j:requiredPermissionNames="adminPortlets"
                                   j:titleKey="serverSettings.managePortlets"
-                                  j:view="serverSettingsBootstrap3GoogleMaterialStyle"
+                                  j:view="settingsBootstrap3GoogleMaterialStyle"
                                   jcr:mixinTypes="jmix:rbTitle"
                                   jcr:primaryType="jnt:contentTemplate">
                                 <pagecontent jcr:primaryType="jnt:contentList">
@@ -331,7 +331,7 @@
                                j:icon="/modules/serverSettings/templates/files/serveradmin/users_x0020_and_x0020_roles/manage_x0020_users/manage_users.png"
                                j:requiredPermissionNames="adminUsers"
                                j:titleKey="siteSettings.manageUsers"
-                               j:view="serverSettingsBootstrap3GoogleMaterialStyle"
+                               j:view="settingsBootstrap3GoogleMaterialStyle"
                                jcr:mixinTypes="jmix:rbTitle"
                                jcr:primaryType="jnt:contentTemplate">
                                 <pagecontent jcr:primaryType="jnt:contentList">
@@ -344,7 +344,7 @@
                                    j:icon="/modules/serverSettings/templates/files/serveradmin/users_x0020_and_x0020_roles/admin_x0020_properties/superadmin_properties.png"
                                    j:requiredPermissionNames="adminRootUser"
                                    j:titleKey="serverSettings.adminProperties"
-                                   j:view="serverSettingsBootstrap3GoogleMaterialStyle"
+                                   j:view="settingsBootstrap3GoogleMaterialStyle"
                                    jcr:mixinTypes="jmix:rbTitle"
                                    jcr:primaryType="jnt:contentTemplate">
                                 <pagecontent jcr:primaryType="jnt:contentList">
@@ -357,7 +357,7 @@
                                   j:icon="/modules/serverSettings/templates/files/serveradmin/users_x0020_and_x0020_roles/password_x0020_policy/password_policy.png"
                                   j:requiredPermissionNames="adminPasswordPolicy"
                                   j:titleKey="serverSettings.password.policies"
-                                  j:view="serverSettingsBootstrap3GoogleMaterialStyle"
+                                  j:view="settingsBootstrap3GoogleMaterialStyle"
                                   jcr:mixinTypes="jmix:rbTitle"
                                   jcr:primaryType="jnt:contentTemplate">
                                 <pagecontent jcr:primaryType="jnt:contentList">
@@ -371,7 +371,7 @@
                                 j:priority="100"
                                 j:requiredPermissionNames="adminGroups"
                                 j:titleKey="siteSettings.label.manageGroups"
-                                j:view="serverSettingsBootstrap3GoogleMaterialStyle"
+                                j:view="settingsBootstrap3GoogleMaterialStyle"
                                 jcr:mixinTypes="jmix:rbTitle"
                                 jcr:primaryType="jnt:contentTemplate">
                                 <pagecontent jcr:primaryType="jnt:contentList">
@@ -390,7 +390,7 @@
                                j:icon="/modules/serverSettings/templates/files/serveradmin/system_x0020_health/system_x0020_info/system_info.png"
                                j:requiredPermissionNames="adminSystemInfos"
                                j:titleKey="serverSettings.systemInfos"
-                               j:view="serverSettingsBootstrap3GoogleMaterialStyle"
+                               j:view="settingsBootstrap3GoogleMaterialStyle"
                                jcr:mixinTypes="jmix:rbTitle"
                                jcr:primaryType="jnt:contentTemplate">
                                 <pagecontent jcr:primaryType="jnt:contentList">
@@ -403,7 +403,7 @@
                                    j:icon="/modules/serverSettings/templates/files/serveradmin/system_x0020_health/cache_x0020_management/cacheManagement.png"
                                    j:requiredPermissionNames="adminCache"
                                    j:titleKey="serverSettings.cacheManagement"
-                                   j:view="serverSettingsBootstrap3GoogleMaterialStyle"
+                                   j:view="settingsBootstrap3GoogleMaterialStyle"
                                    jcr:mixinTypes="jmix:rbTitle"
                                    jcr:primaryType="jnt:contentTemplate">
                                 <pagecontent jcr:primaryType="jnt:contentList">
@@ -416,7 +416,7 @@
                                 j:icon="/modules/serverSettings/templates/files/serveradmin/system_x0020_health/memory/memory.png"
                                 j:requiredPermissionNames="adminManageMemory"
                                 j:titleKey="serverSettings.manageMemory"
-                                j:view="serverSettingsBootstrap3GoogleMaterialStyle"
+                                j:view="settingsBootstrap3GoogleMaterialStyle"
                                 jcr:mixinTypes="jmix:rbTitle"
                                 jcr:primaryType="jnt:contentTemplate">
                                 <pagecontent jcr:primaryType="jnt:contentList">
@@ -429,7 +429,7 @@
                                  j:icon="/modules/serverSettings/templates/files/serveradmin/system_x0020_health/report_x0020_issue/report_issue.png"
                                  j:requiredPermissionNames="adminIssueTracking"
                                  j:titleKey="serverSettings.reportAnIssue"
-                                 j:view="serverSettingsBootstrap3GoogleMaterialStyle"
+                                 j:view="settingsBootstrap3GoogleMaterialStyle"
                                  jcr:mixinTypes="jmix:rbTitle"
                                  jcr:primaryType="jnt:contentTemplate">
                                 <pagecontent jcr:primaryType="jnt:contentList">
