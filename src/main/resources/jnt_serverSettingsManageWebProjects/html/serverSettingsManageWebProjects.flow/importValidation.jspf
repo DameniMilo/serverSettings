@@ -224,6 +224,55 @@
                 </div>
             </c:when>
 
+            <c:when test="${checks.class.name == 'org.jahia.services.importexport.validation.ConstraintsValidatorResult'}">
+                <fmt:message key="serverSettings.manageWebProjects.import.constraints" var="errorSummary">
+                    <fmt:param value="${checks.length}"/>
+                </fmt:message>
+                <div style="display: block">
+                    <div class="alert${checks.blocking ? ' alert-error' : ''}">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            ${fn:escapeXml(errorSummary)}
+                    </div>
+
+                    <fmt:message key="label.detailed" var="i18nHelp"/><c:set var="i18nHelp"
+                                                                             value="${fn:escapeXml(i18nHelp)}"/>
+                    <a class="btn btn-info" href="#details"
+                       onclick="$('#validationErrorsDetailsConstraints${importInfoMap.value.siteKey}').toggle(); return false;"
+                       title="${i18nHelp}"><i class="icon-info-sign icon-white"></i>&nbsp;${i18nHelp}</a>
+                </div>
+                <div id="validationErrorsDetailsConstraints${importInfoMap.value.siteKey}" style="display: none">
+                    <ul>
+                        <c:forEach var="entry" items="${checks.missingMandatoryProperties}">
+                            <li>
+                                <fmt:message key="serverSettings.manageWebProjects.import.constraints.mandatory.detail">
+                                    <fmt:param value="${entry.key}"/>
+                                    <fmt:param value="${entry.value}"/>
+                                </fmt:message>
+                            </li>
+                        </c:forEach>
+                        <c:forEach var="entry" items="${checks.missingMandatoryI18NProperties}">
+                            <li>
+                                <fmt:message key="serverSettings.manageWebProjects.import.constraints.i18n.mandatory.detail">
+                                    <fmt:param value="${entry.key}"/>
+                                    <fmt:param value="${entry.value}"/>
+                                </fmt:message>
+                            </li>
+                        </c:forEach>
+                        <c:forEach var="entry" items="${checks.otherConstraintViolations}">
+                            <c:set var="constraint" value="${fn:split(fn:escapeXml(entry.value), '@@')}"/>
+                            <li>
+                                <c:set var="propertyWithRoot" value="/${constraint[0]}"/>
+                                <fmt:message key="serverSettings.manageWebProjects.import.constraints.otherConstraint.detail">
+                                    <fmt:param value="${fn:substringBefore(entry.key, propertyWithRoot)}"/>
+                                    <fmt:param value="${constraint[0]}"/>
+                                    <fmt:param value="${constraint[1]}"/>
+                                </fmt:message>
+                            </li>
+                        </c:forEach>
+                    </ul>
+                </div>
+            </c:when>
+
             <c:otherwise>
                 <c:catch var="exception"><c:set var="dummy" value="${checks.messageKey} ${checks.messageParams}"/></c:catch>
                 <c:if test="${empty exception}">

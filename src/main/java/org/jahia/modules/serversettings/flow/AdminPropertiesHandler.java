@@ -48,6 +48,7 @@ import org.jahia.modules.serversettings.users.admin.AdminProperties;
 import org.jahia.services.content.JCRContentUtils;
 import org.jahia.services.content.decorator.JCRGroupNode;
 import org.jahia.services.content.decorator.JCRUserNode;
+import org.jahia.services.render.RenderContext;
 import org.jahia.services.usermanager.JahiaUserManagerService;
 import org.jahia.taglibs.user.User;
 import org.slf4j.Logger;
@@ -80,9 +81,9 @@ public class AdminPropertiesHandler implements Serializable {
     /**
      * save the bean in the JCR
      */
-    public void save(MessageContext messages) {
+    public void save(MessageContext messages, RenderContext renderContext) {
         JCRUserNode rootNode = JahiaUserManagerService.getInstance().lookupRootUser();
-        if (!StringUtils.isEmpty(adminProperties.getPassword())) {
+        if (renderContext.getUser().isRoot() && !StringUtils.isEmpty(adminProperties.getPassword())) {
             rootNode.setPassword(adminProperties.getPassword());
         }
 

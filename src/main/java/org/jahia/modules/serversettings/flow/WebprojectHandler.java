@@ -580,7 +580,6 @@ public class WebprojectHandler implements Serializable {
                     MessageContext messageContext) {
         ZipInputStream zis = null;
         if (f != null && f.exists()) {
-            ZipEntry z = null;
             try {
                 if (f != null && f.isDirectory()) {
                     zis = new DirectoryZipInputStream(f);
@@ -608,7 +607,7 @@ public class WebprojectHandler implements Serializable {
             deleteFilesAtEnd = !(zis instanceof DirectoryZipInputStream);
 
             while ((z = zis.getNextEntry()) != null) {
-                String n = z.getName();
+                String n = z.getName().replace('\\', '/');
 
                 File i;
                 if (!(zis instanceof DirectoryZipInputStream)) {
@@ -859,7 +858,7 @@ public class WebprojectHandler implements Serializable {
                 isLegacyImport = true;
             try {
                 while ((z = zis2.getNextEntry()) != null) {
-                    final String name = z.getName();
+                    final String name = z.getName().replace('\\', '/');
                     if ("site.properties".equals(name)) {
                         Properties p = new Properties();
                         p.load(zis2);

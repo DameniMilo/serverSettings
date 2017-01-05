@@ -15,7 +15,7 @@
             <evaluate expression="adminPropertiesHandler.userMembership" result="requestScope.userGroups"/>
         </on-render>
         <transition on="submit">
-            <evaluate expression="adminPropertiesHandler.save(messageContext)" />
+            <evaluate expression="adminPropertiesHandler.save(messageContext, externalContext.requestMap.renderContext)" />
         </transition>
     </view-state>
 </flow>
