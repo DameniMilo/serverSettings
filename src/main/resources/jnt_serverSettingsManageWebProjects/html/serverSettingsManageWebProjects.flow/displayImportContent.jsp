@@ -57,6 +57,14 @@
                         </label>
                     </div>
                     <input type="hidden" id="${importInfoMap.key}" name="_importsInfos['${importInfoMap.key}'].selected"/>
+                    <c:if test="${importInfoMap.value.validationResult.blocking}">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" onchange="switchClass($(this).prev().prev())"/>
+                                <fmt:message key="serverSettings.manageWebProjects.import.ignore.errors"/>
+                            </label>
+                        </div>
+                    </c:if>
                 </div>
 
                 <%@ include file="importValidation.jspf" %>
@@ -144,16 +152,25 @@
 <c:if test="${not empty validationErrors}">
     <script type="text/javascript">
         $(document).ready(function () {
-            function checkBlockingImports() {
-                if ($(".importBlocking:checked").length == 0) {
-                    $("#${currentNode.identifier}-processImport").removeAttr("disabled");
-                } else {
-                    $("#${currentNode.identifier}-processImport").attr("disabled", "disabled");
-                }
-            }
             checkBlockingImports();
             $(".importBlocking").change(checkBlockingImports);
         });
+        function checkBlockingImports() {
+            if ($(".importBlocking:checked").length == 0) {
+                $("#${currentNode.identifier}-processImport").removeAttr("disabled");
+            } else {
+                $("#${currentNode.identifier}-processImport").attr("disabled", "disabled");
+            }
+        }
+
+        function switchClass(el) {
+            if (el.hasClass("importBlocking")) {
+                el.removeClass("importBlocking");
+            } else {
+                el.addClass("importBlocking");
+            }
+            checkBlockingImports();
+        }
     </script>
 </c:if>
 
